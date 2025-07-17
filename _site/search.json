@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "celia_estruch_website",
+    "section": "",
+    "text": "id: hero-heading template: trestles image-width: 70% links: - icon: sun text: Lab href: https://www.github.com target: _blank - icon: globe text: Uprofile href: https://baruch.cuny.edu target: _blank - icon: envelope text: E-mail href: mailto:email@gmail.com\n- icon: linkedin text: LinkedIn href: https://linkedin.com target: _blank - icon: youtube text: YouTube href: https://www.youtube.com\ntarget: _blank - text: “{{&lt; ai orcid &gt;}} ORCID” # use academic icons, “” are needed, you also need to install the fontawesome extension href: https://orcid.org target: _blank - text: “{{&lt; ai clarivate &gt;}} Web of Science” href: https://www.webofscience.com\ntarget: _blank - text: “{{&lt; ai scopus &gt;}} Scopus” href: https://www.scopus.com target: _blank - text: “{{&lt; ai google-scholar &gt;}} Google Scholar” href: https://scholar.google.com target: _blank # - text: “{{&lt; ai researchgate &gt;}} Research Gate” # href: https://www.researchgate.net # target: _blank"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Cèlia Estruch-Garcia",
+    "section": "",
+    "text": "id: hero-heading template: trestles image-width: 70% links: - icon: sun text: Lab href: https://www.github.com target: _blank - icon: globe text: Uprofile href: https://baruch.cuny.edu target: _blank - icon: envelope text: E-mail href: mailto:email@gmail.com\n- icon: linkedin text: LinkedIn href: https://linkedin.com target: _blank - icon: youtube text: YouTube href: https://www.youtube.com\ntarget: _blank - text: “{{&lt; ai orcid &gt;}} ORCID” # use academic icons, “” are needed, you also need to install the fontawesome extension href: https://orcid.org target: _blank - text: “{{&lt; ai clarivate &gt;}} Web of Science” href: https://www.webofscience.com\ntarget: _blank - text: “{{&lt; ai scopus &gt;}} Scopus” href: https://www.scopus.com target: _blank - text: “{{&lt; ai google-scholar &gt;}} Google Scholar” href: https://scholar.google.com target: _blank # - text: “{{&lt; ai researchgate &gt;}} Research Gate” # href: https://www.researchgate.net # target: _blank"
+  },
+  {
+    "objectID": "about.html#work-in-progress",
+    "href": "about.html#work-in-progress",
+    "title": "Cèlia Estruch-Garcia",
+    "section": "Work in Progress",
+    "text": "Work in Progress\nTaking out the Trash: Political implications of door-to-door waste management implementation in Catalonia (with Max Bradley and Pau Grau-Vilalta)."
+  },
+  {
+    "objectID": "about.html#other-work",
+    "href": "about.html#other-work",
+    "title": "Cèlia Estruch Garcia",
+    "section": "",
+    "text": "xxxx"
+  },
+  {
+    "objectID": "about.html#submitted-for-publication",
+    "href": "about.html#submitted-for-publication",
+    "title": "Cèlia Estruch-Garcia",
+    "section": "Submitted for Publication",
+    "text": "Submitted for Publication\nThe electoral effects of banning cars from the streets: Evidence from Barcelona’s Superblocks (with Albert Solé-Ollé, Filippo Tassinari and Elisabet Viladecans-Marsal). CEPR DP19915 \n\nAwards:  Best Paper Award at 11th Environmental Politics and Governance Conference  \nMedia coverage: VoxTalks Economics\n\nDo climate events drive support for climate change policies? (with Toni Rodon, Marc Guinjoan and Roger Sanjaume)."
+  }
+]

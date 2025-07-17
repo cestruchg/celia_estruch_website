@@ -1,0 +1,17 @@
+{
+  "hash": "a1ab64f24c28f058b116ec10edbe4c66",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"celia_estruch_website\"\n---\n\n\n\n\n\nThis is a Quarto website.\n\nTo learn more about Quarto websites visit <https://quarto.org/docs/websites>.\n\n\n\n\n\n::: {.cell}\n\n:::\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

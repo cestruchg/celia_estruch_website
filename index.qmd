@@ -1,0 +1,82 @@
+---
+title: "Cèlia Estruch-Garcia"
+description-meta: "Academic Website Cèlia Estruch-Garcia"
+image: "profile_photo_lse_cut.png"
+page-navigation: false
+toc: false
+page-layout: full
+format:
+  html:
+    css: styles.css
+---
+
+<div style="display: flex; align-items: flex-start; justify-content: center; gap: 3rem; flex-wrap: wrap;">
+
+
+<!-- LEFT COLUMN -->
+<div style="flex: 0 0 280px; text-align: left; margin-right: 2rem;">
+
+<img src="profile_photo_lse_cut.png" alt="Cèlia Estruch Garcia" style="width: 100%; border-radius: 8px;">
+
+
+<p><strong>Cèlia Estruch Garcia</strong><br>
+PhD Researcher, Department of Government<br>
+<a href="https://www.lse.ac.uk/government/" target="_blank">London School of Economics</a>
+cestruch@alumni.lse.ac.uk</p>
+
+<div style="display: flex; gap: 24px; margin-top: 1rem;">
+  <a href="https://github.com/cestruchg" target="_blank">
+    <img src="icons/icon_github.png" alt="GitHub" style="height: 24px; margin-right: 4px">
+  </a>
+  <a href="https://linkedin.com/in/celia-estruch/" target="_blank">
+    <img src="icons/icon_linkedin.png" alt="LinkedIn" style="height: 33px; margin-right: 2px">
+  </a>
+  <a href="https://scholar.google.com/citations?user=tertKG4AAAAJ&hl=ca" target="_blank">
+    <img src="icons/icon_scholar.png" alt="Scholar" style="height: 24px; margin-right: 8px">
+  </a>
+  <a href="https://bsky.app/profile/celiaestruch.bsky.social" target="_blank">
+    <img src="icons/icon_bluesky.png" alt="Bluesky" style="height: 24px; margin-right: 8px">
+  </a>
+  <a href="https://x.com/celiaestruch" target="_blank">
+    <img src="icons/icon_x.png" alt="X" style="height: 24px;">
+  </a>
+</div>
+
+
+
+</div>
+
+
+<!-- RIGHT COLUMN -->
+<div style="flex: 1.5; min-width: 400px; text-align: justify;">
+
+Welcome! I am an incoming Doctoral Researcher at the Department of Government at the <a href="https://www.lse.ac.uk/government/" target="_blank">London School of Economics and Political Science (LSE)</a>. My research focuses on the distributive and political impacts of sustainable urban policies.
+
+Before starting my PhD, I worked as a Research Assistant at <a href="https://ieb.ub.edu/en/" target="_blank">Barcelona's Institute of Economics (IEB)</a> and the <a href="https://www.uoc.edu/en" target="_blank">Open University of Catalonia (UOC)</a>.
+
+I hold a <a href="https://www.lse.ac.uk/study-at-lse/graduate/msc-political-science-political-science-and-political-economy" target="_blank">Master's degree in Political Science and Political Economy</a> from LSE, a <a href="https://www.upf.edu/en/web/graus/grau-filosofia-politica-economia" target="_blank">Bachelor's in Philosophy, Politics and Economics</a> from Pompeu Fabra University, and training in <a href="https://web.ub.edu/en/web/estudis/w/specificmasterdegree-202311953" target="_blank">Data Analysis for Social Sciences</a> from the University of Barcelona.
+
+---
+
+### Research
+
+#### Submitted for Publication
+
+**The electoral effects of banning cars from the streets: Evidence from Barcelona’s Superblocks**  
+_with [Albert Solé-Ollé](https://albertsoleolle.wordpress.com/), [Filippo Tassinari](https://sites.google.com/view/filippotassinari/home-page), and [Elisabet Viladecans-Marsal](https://elisabetviladecansmarsal.com/)._  [CEPR DP19915](https://hub.cepr.org/civicrm/file?id=227076&eid=235822&fcs=1c09bbc55709d2bc0317dcd9e2fe39cc78bcf000513f08d26acbc6d17cd37b2d_1745310367_168)  
+- Awards: Best Paper Award at the [11th Environmental Politics and Governance Conference](https://www.epg2025.org/).  
+- Media: [VoxTalks Economics](https://cepr.org/multimedia/do-car-bans-hurt-politicians)
+
+
+**Do climate events drive support for climate change policies?**  
+_with [Toni Rodon](https://tonirodon.cat/), [Marc Guinjoan](https://sites.google.com/site/engmarcguinjoan?authuser=0), and [Roger Sanjaume](https://rogersanjaume.cat/)._ [Abstract](https://www.ub.edu/portal/web/dp-cpdcfd/novetats/-/detall/-do-climate-events-drive-support-for-climate-change-policies-toni-rodon-upf-marc-guinjoan-uab-)
+
+#### Work in Progress
+
+**Taking out the Trash: Political implications of door-to-door waste management in Catalonia**  
+_with [Max Bradley](https://www.eui.eu/people?id=max-bradley) and [Pau Grau-Vilalta](https://paugrau.cat/)._
+
+</div>
+</div>
+
+

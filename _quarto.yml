@@ -1,0 +1,22 @@
+project:
+  type: website
+  output-dir: docs
+
+description-meta: "Cèlia Estruch-Garcia's Academic Website"
+author-meta: "Cèlia Estruch-Garcia"
+
+website:
+  title: "Cèlia Estruch-Garcia"
+  site-url: https://celia_estruch.cat
+  search: false
+  navbar:
+    right:
+      - text: Home
+        file: index.qmd
+      - text: CV
+        file: Estruch_cv_2025_07.pdf
+
+  page-footer: 
+    left: "[Cèlia Estruch-Garcia](http://www.github.com) &copy; <script>document.write(new Date().getFullYear())</script>" 
+    center: "Build on [Quart Academic Website Template](https://github.com/drganghe/quarto-academic-website-template) adapted by [Dr. Gang He](http://drganghe.github.io)"
+

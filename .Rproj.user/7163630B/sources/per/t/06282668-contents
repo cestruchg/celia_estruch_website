@@ -1,0 +1,1408 @@
+
+# Dataset creation
+
+# Last updated: 16th of June
+
+# Summary: creating a unique dataset for election data, with housing, income, age, etc data
+
+#_____________________________________#
+# Set-up
+pacman::p_load(tidyverse, janitor, stringi, stringr, tidytext, fuzzyjoin, haven, readxl, dplyr)
+setwd("D:/Dropbox/Housing_Populism/Data") 
+#setwd("C:/Users/celia/Dropbox/Housing_Populism/Data") 
+
+##_____________________________________#
+## Election panel data 
+election_parties <- read.csv2("elections/Final databases/election_clean_db_20_3.csv")
+
+election_parties <- election_parties %>% 
+  mutate(municipality_code = ifelse(municipality_name == "Lledó", "44141", municipality_code),
+         municipality_code = ifelse(municipality_name == "Castellanos De Villiquera", "37185", municipality_code),
+         municipality_name = ifelse(municipality_name == "Torrecilla Del Ducado", "Sienes", municipality_name),
+         municipality_code = ifelse(municipality_name == "Sienes", "19256", municipality_code),
+         municipality_name = ifelse(municipality_name == "Palmerola", "Les Llosses", municipality_name),
+         municipality_code = ifelse(municipality_name == "Les Llosses", "17096", municipality_code),
+         municipality_name = ifelse(municipality_name == "Alcorlo", "La Toba", municipality_name),
+         municipality_code = ifelse(municipality_name == "La Toba", "19269", municipality_code),
+         municipality_name = ifelse(municipality_name == "Almodovar De Monte-Rey", "Almodóvar Del Pinar", municipality_name),
+         municipality_code = ifelse(municipality_name == "Almodóvar Del Pinar", "16017", municipality_code),
+         municipality_name = ifelse(municipality_name == "Fresnedo", "Boñar", municipality_name),
+         municipality_code = ifelse(municipality_name == "Boñar", "24021", municipality_code),
+         municipality_name = ifelse(municipality_name == "Darrical", "Alcolea", municipality_name),
+         municipality_code = ifelse(municipality_name == "Alcolea", "04013", municipality_code),
+         municipality_name = ifelse(municipality_name == "Fornillos De Fermoselle", "Villar Del Buey", municipality_name),
+         municipality_code = ifelse(municipality_name == "Villar Del Buey", "49264", municipality_code),
+         municipality_name = ifelse(municipality_name == "Fornes", "Arenas Del Rey", municipality_name),
+         municipality_name = ifelse(municipality_name == "Játar", "Arenas Del Rey", municipality_name),
+         municipality_name = ifelse(municipality_name == "Guadiana Del Caudillo", "Badajoz", municipality_name),
+         municipality_code = ifelse(municipality_name == "Badajoz", "06015", municipality_code),
+         municipality_code = ifelse(municipality_name == "Arenas Del Rey", "18020", municipality_code),
+         municipality_name = ifelse(municipality_name == "Domingo Pérez De Granada", "Iznalloz", municipality_name),
+         municipality_code = ifelse(municipality_name == "Iznalloz", "18105", municipality_code),
+         municipality_name = ifelse(municipality_name == "El Palmar De Troya", "Utrera", municipality_name),
+         municipality_name = ifelse(municipality_name == "Palmar De Troya, El", "Utrera", municipality_name),
+         municipality_code = ifelse(municipality_name == "Utrera", "41095", municipality_code),
+         municipality_name = ifelse(municipality_name == "San Martín Del Tesorillo", "Jimena De La Frontera", municipality_name),
+         municipality_code = ifelse(municipality_name == "Jimena De La Frontera", "11021", municipality_code),
+         municipality_name = ifelse(municipality_name == "Fuente Carreteros", "Fuente Palmera", municipality_name),
+         municipality_code = ifelse(municipality_name == "Fuente Palmera", "14030", municipality_code),
+         municipality_name = ifelse(municipality_name == "Guijarrosa, La", "Fuente Palmera", municipality_name),
+         municipality_code = ifelse(municipality_name == "Fuente Palmera", "14030", municipality_code),
+         municipality_name = ifelse(municipality_name == "Balanegra", "Berja", municipality_name),
+         municipality_code = ifelse(municipality_name == "Berja", "04029", municipality_code),
+         municipality_name = ifelse(municipality_name == "Torrenueva Costa", "Motril", municipality_name),
+         municipality_code = ifelse(municipality_name == "Motril", "18140", municipality_code),
+         municipality_name = ifelse(municipality_name == "Zarza-Perrunal, La", "Calañas", municipality_name),
+         municipality_code = ifelse(municipality_name == "Calañas", "21017", municipality_code),
+         municipality_name = ifelse(municipality_name == "Tiétar", "Talayuela", municipality_name),
+         municipality_name = ifelse(municipality_name == "Pueblonuevo De Miramontes", "Talayuela", municipality_name),
+         municipality_code = ifelse(municipality_name == "Talayuela", "10180", municipality_code),
+         municipality_name = ifelse(municipality_name == "Dehesas Viejas", "Iznalloz", municipality_name),
+         municipality_code = ifelse(municipality_name == "Iznalloz", "18105", municipality_code),
+         municipality_name = ifelse(municipality_name == "Valderrubio", "Pinos Puente", municipality_name),
+         municipality_code = ifelse(municipality_name == "Pinos Puente", "18158", municipality_code),
+         municipality_name = ifelse(municipality_name == "Montecorto", "Ronda", municipality_name),
+         municipality_name = ifelse(municipality_name == "Serrato", "Ronda", municipality_name),
+         municipality_code = ifelse(municipality_name == "Ronda", "29084", municipality_code),
+         municipality_name = ifelse(municipality_name == "Cerdedo-Cotobade", "Cerdedo", municipality_name),
+         municipality_code = ifelse(municipality_name == "Cerdedo", "36011", municipality_code),
+         municipality_name = ifelse(municipality_name == "Oza-Cesuras", "Cesuras", municipality_name),
+         municipality_code = ifelse(municipality_name == "Cesuras", "15026", municipality_code),
+         municipality_name = ifelse(municipality_name == "Vegaviana", "Cilleros", municipality_name),
+         municipality_code = ifelse(municipality_name == "Cilleros", "10064", municipality_code),
+         municipality_name = ifelse(municipality_name == "Alagón Del Río", "Galisteo", municipality_name),
+         municipality_code = ifelse(municipality_name == "Galisteo", "10076", municipality_code),
+         municipality_name = ifelse(municipality_name == "Villanueva De La Concepción", "Antequera", municipality_name),
+         municipality_code = ifelse(municipality_name == "Antequera", "29015", municipality_code),
+         municipality_name = ifelse(municipality_name == "Pinar De El Hierro, El", "Valverde", municipality_name),
+         municipality_code = ifelse(municipality_name == "Valverde", "38048", municipality_code),
+         municipality_name = ifelse(municipality_name == "Canonja (La)", "Tarragona", municipality_name),
+         municipality_code = ifelse(municipality_name == "Tarragona", "43148", municipality_code)) %>% 
+  mutate(municipality_code = str_pad(str_extract(municipality_code, "\\d+"), 5, pad = "0"))
+         
+# Create a reference table with the most common judicial_id per municipality
+judicial_ref <- election_parties %>%
+  group_by(municipality_code, municipality_name) %>%
+  count(judicial_id, sort = TRUE) %>%
+  slice(1) %>%
+  ungroup()
+
+# Join the reference table back to the main dataset
+election_parties <- election_parties %>%
+  select(-judicial_id) %>%
+  left_join(judicial_ref %>% select(municipality_code, municipality_name, judicial_id),
+            by = c("municipality_code", "municipality_name"))
+rm(judicial_ref)
+
+# Define a mode function
+get_mode <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+
+# Homogenize population and votes_blank
+election_parties <- election_parties %>%
+  group_by(election_year, municipality_code, municipality_name, province_name) %>%
+  mutate(population = get_mode(population),
+         votes_null = get_mode(votes_null),
+         votes_blank = get_mode(votes_blank)) %>%
+  ungroup()
+rm(get_mode)
+
+election_ideology <- election_parties %>%
+  # 1. Drop unnecessary columns
+  select(-party_id,-starts_with("ideology_")) %>%
+  # 2. Group so we can sum votes per ideology per municipality-year
+  group_by(municipality_code, election_year, municipality_name, province_name,
+    judicial_id, population, votes_blank, votes_null, party_seats, party_ideology) %>%
+  summarise(votes = sum(votes, na.rm = TRUE), .groups = "drop") %>%
+  # 3. Pivot wider to get ideology vote columns
+  pivot_wider(names_from = party_ideology,
+    names_prefix = "no_votes_",
+    values_from = votes,
+    values_fill = 0)
+
+#unique <- election_ideology %>%
+#  group_by(municipality_code, municipality_name) %>%
+#  summarise(n = n()) %>%
+#  ungroup() %>% 
+#  arrange(n) 
+#head(unique, n = 20)
+
+## Check the parties with highest number of candidatures
+party_counts <- election_parties %>%
+  group_by(party_name) %>%
+  summarise(n = n()) %>%
+  arrange(desc(n))
+head(party_counts)
+
+## Create new columns as dummies 
+# PSOE
+psoe_votes <- election_parties %>%
+  filter(party_ideology == 3 &
+           (str_detect(party_name, "(?i)SOCIALISTA|PSOE|OBRER") |
+              str_detect(party_id, "(?i)SOCIALISTA|PSOE|PSC|PS|PSPV")))
+
+psoe_keys <- psoe_votes %>%
+  distinct(municipality_code, election_year) %>% 
+  mutate(psoe_key = paste(municipality_code, election_year),
+         psoe_present = 1)
+
+# PP (Partido Popular)
+pp_votes <- election_parties %>%
+  filter(party_ideology == 6 & 
+           (str_detect(party_name, "(?i)POPULAR") |
+              str_detect(party_id, "(?i)PP|POPULAR")))
+
+pp_keys <- pp_votes %>%
+  distinct(municipality_code, election_year) %>%
+  mutate(pp_key = paste(municipality_code, election_year),
+         pp_present = 1)
+
+# GRUPO INDEPENDIENTE
+gi_votes <- election_parties %>%
+  filter(party_ideology == 8 & 
+           (str_detect(party_name, "(?i)GRUPO INDEPENDIENTE") |
+              str_detect(party_id, "(?i)GI|GRUPO INDEPENDIENTE")))
+
+gi_keys <- gi_votes %>%
+  distinct(municipality_code, election_year) %>%
+  mutate(gi_key = paste(municipality_code, election_year),
+         gi_present = 1)
+
+# CONVERGENCIA I UNIO
+ciu_votes <- election_parties %>%
+  filter(party_ideology == 5 & 
+           (str_detect(party_name, "(?i)CONVERGENCIA I UNIO|CONVERGENCIA") |
+              str_detect(party_id, "(?i)CIU|CONVERGENCIA I UNIO")))
+
+ciu_keys <- ciu_votes %>%
+  distinct(municipality_code, election_year) %>%
+  mutate(ciu_key = paste(municipality_code, election_year),
+         ciu_present = 1)
+
+# PODEMOS (assuming ideology 1, adjust if needed)
+podemos_votes <- election_parties %>%
+  filter(party_ideology == 1 & 
+           (str_detect(party_name, "(?i)PODEM|ARA MAO|ARA DECIDIM RIPOLLET|AHORA SI|
+           MOVIMIENTU ASTURIANU DE COVERA|AVANCEMOS MONTILLA|Plataforma Ciutadana Oberta de Lalin|
+                       AVANT ADELANTE LOS VERDES|ALIANZA POR INGENIOUNI|COMU")) |
+              str_detect(party_id, "(?i)PODEM|UP|UNI"))
+
+podemos_keys <- podemos_votes %>%
+  distinct(municipality_code, election_year) %>%
+  mutate(podemos_key = paste(municipality_code, election_year),
+         podemos_present = 1)
+
+# VOX 
+vox_votes <- election_parties %>%
+  filter((str_detect(party_name, "(?i)VOX")) |
+           str_detect(party_id, "(?i)VOX"))
+
+vox_keys <- podemos_votes %>%
+  distinct(municipality_code, election_year) %>%
+  mutate(vox_key = paste(municipality_code, election_year),
+         vox_present = 1)
+
+# Integrate all the dummies into the main dataset
+election_ideology <- election_ideology %>%
+  mutate(key = paste(municipality_code, election_year)) %>%
+  # Add PSOE dummy
+  left_join(psoe_keys %>% select(psoe_key, psoe_present), by = c("key" = "psoe_key")) %>%
+  # Add PP dummy
+  left_join(pp_keys %>% select(pp_key, pp_present), by = c("key" = "pp_key")) %>%
+  # Add GI dummy
+  left_join(gi_keys %>% select(gi_key, gi_present), by = c("key" = "gi_key")) %>%
+  # Add CIU dummy
+  left_join(ciu_keys %>% select(ciu_key, ciu_present), by = c("key" = "ciu_key")) %>%
+  # Add Podemos dummy
+  left_join(podemos_keys %>% select(podemos_key, podemos_present), by = c("key" = "podemos_key")) %>%
+  # Replace NAs with 0s
+  mutate(psoe_present = replace_na(psoe_present, 0),
+         pp_present = replace_na(pp_present, 0),
+         gi_present = replace_na(gi_present, 0),
+         ciu_present = replace_na(ciu_present, 0),
+         podemos_present = replace_na(podemos_present, 0)) %>%
+  select(-key)
+
+# Select variables and count total votes
+election_ideology <- election_ideology %>%
+  mutate(total_votes = rowSums(select(., c(7:8, 10:20)), na.rm = TRUE)) %>% 
+  select(municipality_code, municipality_name, year = election_year,
+    province_name, judicial_id, population, party_seats,
+    no_votes_0,    no_votes_1,    no_votes_2,    no_votes_3,    no_votes_4,
+    no_votes_5,    no_votes_6,    no_votes_7,    no_votes_8,    no_votes_3.5, 
+    no_votes_4.5, no_votes_blank = `votes_blank`,  
+    no_votes_null = `votes_null`, total_votes, contains("present"))
+rm(party_counts)
+rm(list = ls(pattern = "keys"))
+rm(list = ls(pattern = "_votes"))
+
+# Compute vote shares
+election_ideology <- election_ideology %>%
+  mutate(across(starts_with("no_votes_"),
+                ~ .x / total_votes,
+                .names = "share_votes_{.col}")) %>%
+  rename_with(~ gsub("no_votes_", "", .),
+              starts_with("share_votes_no_votes_")) %>%
+  mutate(across(starts_with("share_votes_"),
+                ~ round(., 4)))
+write_csv(election_ideology, file = "elections/Final databases/election_ideology_cleaned.csv")
+#load("elections/Final databases/election_ideology_cleaned.RData")
+
+##_____________________________________#
+## Election data to panel format
+
+# Identify the ideology in the vote share columns
+#ideology_vars <- grep("^share_votes_", names(election_ideology), value = TRUE)
+
+# For each municipality, compute change in vote share per ideology between elections
+election_panel <- election_ideology %>%
+  arrange(municipality_code, year) %>%
+  group_by(municipality_code) %>%
+#  mutate(across(all_of(ideology_vars),
+#    list(delta_abs = ~ . - lag(.),
+#      delta_rel = ~ (. - lag(.)) / abs(lag(.))),
+#    .names = "{.col}_{.fn}")) %>%
+  ungroup()
+#rm(ideology_vars)
+#
+## Change "." to NAs
+#election_panel <- election_panel %>%
+#  mutate(across(ends_with("delta_rel"),
+#    ~ ifelse(is.nan(.) | is.infinite(.), NA, .)))
+
+save(election_panel, file = "elections/Final databases/election_panel_3_4.RData")
+rm(election_parties)
+
+##_____________________________________#
+## Average gross income per household
+
+## 1. Load and clean INE income data
+income <- readxl::read_xlsx("income/INE/income_hh_cleaned.xlsx") %>% 
+  select(-id, -original_name, -contains("net"), -contains("gini"), 
+         -contains("incdist"), -contains("pers"), -contains("cons"))
+names(income)[6:13] <- paste0("avg_gross_inc_hh_", 2022:2015)
+
+income <- income %>%
+  mutate(across(6:13, ~ na_if(as.character(.), "."))) %>%  # Replace "." with NA
+  mutate(across(6:13, as.numeric)) %>%                     # Convert all to numeric
+  mutate(across(where(is.numeric), ~ round(., 2)))         # Round only numeric columns
+
+## 2. Fill missing 2015 values using later years (optional, extrapolation)
+income <- income %>%
+  mutate(avg_gross_inc_hh_2015 = ifelse(is.na(avg_gross_inc_hh_2015) & !is.na(avg_gross_inc_hh_2016) & 
+                                          !is.na(avg_gross_inc_hh_2017),
+    ifelse(avg_gross_inc_hh_2016 - (avg_gross_inc_hh_2017 - avg_gross_inc_hh_2016) > 0,
+           avg_gross_inc_hh_2016 - (avg_gross_inc_hh_2017 - avg_gross_inc_hh_2016),
+           avg_gross_inc_hh_2016),
+    avg_gross_inc_hh_2015))
+
+## 3. Aggregate INE data to municipal level
+income_municipal <- income %>%
+  group_by(province_name, municipality_code, municipality_name) %>%
+  summarise(across(starts_with("avg_gross_inc_hh_"), mean, na.rm = F), .groups = 'drop') %>%
+  mutate(across(starts_with("avg_gross_inc_hh_"), ~ round(., 2))) # Round only numeric columns
+rm(income)
+
+## 4. Load and clean FEDEA data
+fedea <- read.csv("income/FEDEA/fedea_income_cleaned.csv") %>% 
+  janitor::clean_names() %>% 
+  mutate(municipality_code = str_pad(str_extract(municipality_code, "\\d+"), 5, pad = "0")) %>% 
+  select(municipality_code, province_name, average_income_per_declarant_2011:average_income_per_declarant_2015)
+
+## 5. Merge INE (municipal) and FEDEA data
+income_municipal <- left_join(income_municipal, fedea, by = c("municipality_code", "province_name"))
+
+## 6. Compute FEDEA growth factors (2011–2015)
+income_municipal <- income_municipal %>%
+  mutate(growth_2011 = average_income_per_declarant_2012 / average_income_per_declarant_2011,
+         growth_2012 = average_income_per_declarant_2013 / average_income_per_declarant_2012,
+         growth_2013 = average_income_per_declarant_2014 / average_income_per_declarant_2013,
+         growth_2014 = average_income_per_declarant_2015 / average_income_per_declarant_2014)
+
+## 7. Extrapolate avg gross household income back to 2011 using INE 2015 and FEDEA growth
+income_municipal <- income_municipal %>%
+  mutate(avg_gross_inc_hh_2014 = avg_gross_inc_hh_2015 / growth_2014,
+         avg_gross_inc_hh_2013 = avg_gross_inc_hh_2014 / growth_2013,
+         avg_gross_inc_hh_2012 = avg_gross_inc_hh_2013 / growth_2012,
+         avg_gross_inc_hh_2011 = avg_gross_inc_hh_2012 / growth_2011)
+
+## 8. Optional: drop now-unneeded FEDEA vars and clean up
+income_municipal <- income_municipal %>%
+  select(-contains("per_declarant_"), -contains("per_capita"), 
+         -contains("median"), -contains("taxable"), -province_name,
+         -starts_with("growth_"))
+rm(fedea)
+
+## 9. Pivot to longer 
+income_municipal <- income_municipal %>%  
+  pivot_longer(cols = starts_with("avg_gross_inc_hh_"),
+               names_to = "year",
+               values_to = "avg_gross_inc_hh") %>% 
+  mutate(year = str_extract(year, "\\d{4}")) %>% 
+  filter(!is.na(avg_gross_inc_hh)) 
+
+## 10. Municipality names cleaning and data saving
+clean_municipality_name <- function(name) {
+  name %>%
+    stri_trans_general("Latin-ASCII") %>%  # Remove accents
+    str_to_lower() %>%                     # Convert to lowercase
+    str_extract("^[^/]+") %>%              # Extract text before the first slash
+    str_replace_all("-", " ") %>%          # Replace hyphens with spaces
+    str_replace_all("\\(.*\\)", "") %>%    # Remove text inside parentheses
+    str_replace_all("^l'\\s*", "") %>%     # Remove "l'" at the start
+    str_replace_all("^el\\s+|^la\\s+|^los\\s+", "") %>%  # Remove leading articles
+    str_squish()  # Remove extra spaces
+}
+
+income_municipal <- income_municipal %>% 
+  mutate(municipality_name = clean_municipality_name(municipality_name)) 
+
+manual_matches <- tibble::tibble(
+  word = c("vistabella del maestrat", "erriberabeitia", "alcoi", "xabia", "xixona", "poble nou de benitatxell, el",
+           "camp de mirra, el", "orxa, l'", "monover", "sant vicent del raspeig", "torre de les macanes, la", "vila joiosa, la",
+           "santa maria rivarredonda", "benicassim", "xodos", "orpesa", "atez", "useres", "suera",
+           "castell platja d'aro", "arrankudiaga zollo", "novetle", "moixent", "rapita, la", "orcha", "valle de ancares", "alfarp"),
+  new = c("vistabella del maestrazgo", "ribera baja", "alcoy", "javea", "jijona", "benitachell",
+          "campo de mirra", "orcha", "monovar", "san vicente del raspeig", "torremanzanas", "villajoyosa",
+          "santa maria ribarredonda", "benicasim", "chodos", "oropesa del mar", "atetz", "useres", "sueras",
+          "castell d'aro, platja d'aro i s'agaro", "arrankudiaga", "novele", "mogente", "sant carles de la rapita", "lorcha", "candin", "alfarb"))
+
+income_municipal <- income_municipal %>%
+  mutate(municipality_name = case_when(municipality_name %in% manual_matches$word ~ 
+                                         manual_matches$new[match(municipality_name, manual_matches$word)],
+                                       TRUE ~ municipality_name))  # Keep original if no match
+
+write_csv(income_municipal, "idealista/income_municipal_extrapolated.csv")
+
+##_____________________________________#
+## Unemployment
+
+unemployment <- readxl::read_xlsx("unemployment/december/unemployment_paro_cleaned.xlsx") 
+
+unemployment <- unemployment %>%
+  mutate(municipality_name = if_else(str_detect(municipality_name, "(?i)Collado") & 
+                                       province == "Caceres", "Collado",
+                                     municipality_name),
+         municipality_name = if_else(str_detect(municipality_name, "(?i)algimia de alfara"), 
+                                     "algimia d'alfara",
+                                     municipality_name)) %>% 
+  filter(!municipality_name %in% c("Las Palmas", "Palmas Las")) %>% 
+  filter(!municipality_name %in% c("(?i)Sta Cruz De Tenerife", "(?i)sta c tenerife")) %>% 
+  filter(!municipality_name %in% c("Balears (Illes)"))
+
+# Define patterns and their replacements in a named vector
+replacements <- c(
+  "(?i)Villafranca Del Cid" = "Villafranca Del Cid",
+  "(?i)Yerri" = "Yerri",
+  "(?i)Vimbodi" = "Vimbodi",
+  "(?i)Vila-Real" = "Vila-real",
+  "(?i)Domenec" = "Torre D'en Domenec, La",
+  "(?i)Raspeig" = "Sant Vicent del Raspeig",
+  "(?i)Urduña" = "Urduña/Orduña",
+  "(?i)San Ildefonso" = "San Ildefonso",
+  "(?i)Valle de Villaverde" = "Villaverde De Trucios",
+  "(?i)Retamoso" = "Retamoso",
+  "(?i)Villarcayo De Merindad" = "Villarcayo de Merindad de Castilla la Vieja",
+  "(?i)Urzainqui" = "Urzainqui",
+  "(?i)Veracruz" = "Beranuy",
+  "(?i)Balears" = "Illes Balears",
+  "(?i)Ceuta" = "Ceuta",
+  "(?i)Esparza" = "Esparza",
+  "(?i)Aldea De San Nicolas, La" = "San Nicolas De Tolentino",
+  "(?i)Montroi" = "Real de Montroi",
+  "(?i)Altomira|Puebla De Don Francisco" = "Valle de Altomira, El",
+  "(?i)Palmas De Gran Canaria" = "Las Palmas",
+  "(?i)Monserrat" = "Montserrat",
+  "(?i)Pinoso/Pinos, El|Pinos, el/Pinoso" = "Pinoso",
+  "(?i)San Juan De Enova" = "Sant Joanet",
+  "(?i)Orcoyen" = "Orkoien",
+  "(?i)Masalaves" = "Massalaves",
+  "(?i)Passanant" = "Passanant",
+  "(?i)Olza" = "Cendea de Olza",
+  "(?i)Noain.*Elorz" = "Noain, Valle De Elorz",
+  "(?i)Castello.*Plana" = "Castello De La Plana",
+  "(?i)de la corona" = "Llocnou De La Corona",
+  "(?i)Llodio" = "Llodio",
+  "(?i)Melilla" = "Melilla",
+  "(?i)Horcajo de la Sierra" = "Horcajo de la Sierra",
+  "(?i)Gargantilla Del Lozoya" = "Gargantilla Del Lozoya",
+  "(?i)Labastida" = "Labastida",
+  "(?i)Ochaga" = "Otsagabia",
+  "(?i)Oronz" = "Oronz",
+  "(?i)Hondon de las Nieves" = "Hondon de las Nieves",
+  "(?i)Cabrera " = "Cabrera d'Anoia",
+  "(?i)Boadella" = "Boadella i Les Escaules",
+  "(?i)Canonja" = "Canonja, La",
+  "(?i)Santa Cruz de Tenerife" = "Santa Cruz de Tenerife",
+  "(?i)Heura" = "Cruilles, Monells i Sant Sadurni de l'Heura",
+  "(?i)Collado" = "Collado",
+  "(?i)Ajamil" = "Ajamil de Cameros",
+  "(?i)Etxebarri" = "Etxebarri",
+  "(?i)Villadecanes" = "toral de los vados",
+  "(?i)Villanueva de la Torre" = "Villanueva de la Torre",
+  "(?i)Guadasequies" = "Guadassequies",
+  "(?i)Garay" = "Garai")
+
+# Function to replace municipality names
+standardize_names <- function(name, pattern_map) {
+  for (pattern in names(pattern_map)) {
+    if (str_detect(name, pattern)) {
+      return(pattern_map[[pattern]])
+    }
+  }
+  return(name)
+}
+
+# Apply to municipality_name
+unemployment <- unemployment %>%
+  mutate(municipality_name = map_chr(municipality_name, ~ 
+                                       standardize_names(.x, replacements)),
+         province = case_when(province == "Vizcaya" ~ "Bizkaia",
+                              str_detect(province, "Sta Cruz Tener|Santa Cruz de Tenerife") ~ "Santa Cruz de Tenerife",
+                              str_detect(province, "Balear") ~ "Illes Balears",
+                              str_detect(province, "Caceres") ~ "Cáceres",
+                              str_detect(province, "Castellon") ~ "Castelló",
+                              str_detect(province, "Alicante") ~ "Alacant",
+                              str_detect(province, "Avila") ~ "Ávila",
+                              str_detect(province, "Cadiz") ~ "Cádiz",
+                              str_detect(province, "Cordoba") ~ "Córdoba",
+                              str_detect(province, "Gipuzcoa") ~ "Gipuzkoa",
+                              str_detect(province, "Palmas") ~ "Las Palmas",
+                              str_detect(province, "Jaen") ~ "Jaén",
+                              str_detect(province, "Leon") ~ "León",
+                              str_detect(province, "Malaga") ~ "Málaga",
+                              str_detect(province, "Coruña") ~ "A Coruña",
+                              str_detect(province, "Rioja, La") ~ "La Rioja",
+                              TRUE ~ province)) %>%
+  filter(!is.na(paro)) %>%
+  group_by(municipality_name, province) %>%
+  fill(municipality_code, .direction = "downup") %>%
+  ungroup()
+
+unemployment <- unemployment %>%
+  select(-ccaa) %>% 
+    rename(unemployment_abs = paro, province_name = province) %>% 
+  mutate(year = as.character(year))
+
+unemployment <- unemployment %>% 
+  mutate(municipality_name = clean_municipality_name(municipality_name)) %>% 
+  filter(!municipality_name %in% c("vizcaya", "illes balears", "guipuzcoa", "sta cruz de tenerife")) 
+
+unemployment <- unemployment %>% 
+  mutate(municipality_code = ifelse(municipality_name == "fonfria" & province_name == "Zamora", "49071", municipality_code),
+    municipality_code = ifelse(municipality_name == "rebollar" & province_name == "Cáceres", "10154", municipality_code),
+    municipality_code = ifelse(municipality_name == "sada" & province_name == "A Coruña", "15075", municipality_code),
+    municipality_name = ifelse(municipality_name == "castellon" & province_name == "Castelló", "castello de la plana", municipality_name),
+    municipality_code = ifelse(municipality_name == "castello de la plana", "12040", municipality_code),
+    municipality_code = ifelse(municipality_name == "toral de los vados", "24206", municipality_code),
+    municipality_code = ifelse(municipality_name == "alfara de algimia", "46024", municipality_code))
+
+# Step 1: Create a lookup table with the most frequent municipality_name per code+province
+name_lookup <- unemployment %>%
+  group_by(municipality_code, province_name, municipality_name) %>%
+  tally() %>%
+  arrange(municipality_code, province_name, desc(n)) %>%
+  group_by(municipality_code, province_name) %>%
+  slice(1) %>%  # pick the most frequent name
+  ungroup() %>%
+  select(municipality_code, province_name, municipality_name) %>%
+  rename(standard_name = municipality_name)
+
+# Step 2: Join the lookup back to the unemployment dataset and overwrite the name
+unemployment <- unemployment %>%
+  left_join(name_lookup, by = c("municipality_code", "province_name")) %>%
+  mutate(municipality_name = standard_name) %>%
+  select(-standard_name)
+
+conflicts <- unemployment %>%
+  group_by(municipality_code) %>%
+  summarise(n_names = n_distinct(municipality_name),
+            n_provinces = n_distinct(province_name),
+            names = paste(unique(municipality_name), collapse = ", "),
+            provinces = paste(unique(province_name), collapse = ", "),
+            .groups = "drop") %>%
+  filter(n_names > 1 | n_provinces > 1)
+
+# Supress duplicates
+unemployment <- unemployment %>%
+  distinct()
+
+write_csv(unemployment, "unemployment/unemployment_cleaned.csv")
+rm(standardize_names, replacements, name_lookup, conflicts)
+
+##_____________________________________#
+## Migration and Age
+
+migration_age <- read.csv("age_migration/33571.csv", sep = "\t") %>% 
+  clean_names() %>% 
+  mutate(# Clean 'total' column and both subgroups
+    total = as.numeric(gsub(",", ".", gsub("\\.", "", total))),   # Handles 1.234,56 format
+    total = ifelse(is.na(total), as.numeric(total), total),       # Ensures NA stays NA
+    total = round(total, 0),                     
+    total = as.numeric(total)) %>% 
+  separate(municipios, into = c("municipality_code", "municipality_name"), sep = " ", extra = "merge") %>% 
+  mutate(periodo = as.character(periodo)) %>%  # Ensure 'periodo' is a character column
+  mutate(year = str_extract(periodo, "\\d{4}")) %>% 
+  select(-periodo)
+
+migration_age <- migration_age %>% 
+  filter(municipality_name != "Nacional") %>% 
+  filter(sexo == "Total") %>% 
+  select(-sexo)
+
+manual_matches <- tibble::tibble(
+  word = c("Vistabella del Maestrat"),
+  new = c("vistabella del maestrazgo"))
+
+# Mutate 'idealista' by replacing municipality_name based on the manual matches
+migration_age <- migration_age %>%
+  mutate(municipality_name = case_when(municipality_name %in% manual_matches$word ~ 
+      manual_matches$new[match(municipality_name, manual_matches$word)],
+    TRUE ~ municipality_name))  # Keep original if no match
+
+# Ensure all needed columns are in character or factor format as necessary
+migration_age_wide <- migration_age %>%
+  mutate(across(c(municipality_code, municipality_name, nacionalidad, edad_grandes_grupos, year), as.character)) %>%
+  pivot_wider(names_from = c(nacionalidad, edad_grandes_grupos),
+              values_from = total,
+              values_fill = 0)  # fills missing values with 0
+
+migration_age_wide <- migration_age_wide %>% 
+  select(c(1:3, total_population = `Total_Todas las edades`,
+           aged_under_16 = `Total_Menos de 16 años`,
+           aged_16_64 = `Total_De 16 a 64 años`,
+           aged_over_65 = `Total_65 y más años`,
+           spanish = `Española_Todas las edades`,
+           foreigner = `Extranjera_Todas las edades`))
+rm(migration_age, manual_matches)
+
+# Compute shares: % immigrants, % old-%young
+migration_age_wide <- migration_age_wide %>% 
+  mutate(share_aged_under_16 = aged_under_16 / total_population * 100,
+         share_aged_16_64 = aged_16_64 / total_population * 100,
+         share_aged_over_65 = aged_over_65 / total_population * 100,
+         share_foreigner = foreigner / total_population * 100,
+         share_spanish = spanish / total_population * 100) %>% 
+  select(-total_population, -aged_under_16, -aged_16_64, -aged_over_65, -foreigner, -spanish)
+
+migration_age_wide <- migration_age_wide %>% 
+  mutate(municipality_name = clean_municipality_name(municipality_name)) 
+
+unique <- migration_age_wide %>%
+  group_by(municipality_code, municipality_name) %>%
+  summarise(across(everything(), ~ ifelse(length(unique(.)) == 1, unique(.), NA)),
+            .groups = "drop")
+
+write_csv(migration_age_wide, file = "age_migration/migration_age_cleaned.csv", na = "")
+rm(unique)
+
+##_____________________________________#
+## Renters-owners
+
+renters_owners <- read.csv("rent/renters_owners_2001_2011_2021.csv") %>% 
+  mutate(municipality_code = str_pad(str_extract(municipality_code, "\\d+"), 5, pad = "0")) %>% 
+  mutate(municipality_name = clean_municipality_name(municipality_name)) 
+
+renters_owners <- renters_owners %>% 
+  mutate(municipality_name = ifelse(municipality_name == "erriberabeitia", "ribera baja", municipality_name),
+         municipality_name = ifelse(municipality_name == "lorxa", "orcha", municipality_name),
+         municipality_name = ifelse(municipality_name == "vall de gallinera", "vall de gallinera, la", municipality_name),
+         municipality_name = ifelse(municipality_name == "mao mahon", "mao", municipality_name),
+         municipality_name = ifelse(municipality_name == "bigues i riells del fai", "bigues i riells", municipality_name),
+         municipality_name = ifelse(municipality_name == "useres, les", "useras", municipality_name),
+         municipality_name = ifelse(municipality_name == "vistabella del maestrat", "vistabella del maestrazgo", municipality_name),
+         municipality_name = ifelse(municipality_name == "candin", "valle de ancares", municipality_name),
+         municipality_name = ifelse(municipality_name == "alfarp", "alfarb", municipality_name))
+
+renters_owners_long <- renters_owners %>%
+  pivot_longer(cols = c(owned_2001, rented_2001, other_form_2001, 
+                        owned_raw_2001, rented_raw_2001, other_form_raw_2001, total_raw_2001,
+                        owned_2011, rented_2011, other_form_2011, 
+                        owned_raw_2011, rented_raw_2011, other_form_raw_2011, total_raw_2011,
+                        owned_2021, rented_2021, other_form_2021,
+                        owned_raw_2021, rented_raw_2021, other_form_raw_2021, total_raw_2021),
+    names_to = c("variable", "year"),
+    names_pattern = "(.*)_(\\d+)") %>%
+  pivot_wider(names_from = variable, values_from = value) %>%
+  relocate(year, .after = municipality_code) 
+rm(renters_owners)
+
+renters_owners_long <- renters_owners_long %>%
+  filter(!if_all(c(owned, rented, other_form), is.na)) %>% 
+  rename(dwellings_raw = total_raw)
+
+write_csv(renters_owners_long, file = "rent/renters_owners_long.csv", na = "")
+
+
+##________________________________#
+# Gini
+
+gini <- readxl::read_xlsx("income/INE/income_hh_cleaned.xlsx") %>% 
+  select(-id, -original_name, -contains("net"), -contains("incdist"), 
+         -contains("pers"), -contains("cons"), -contains("gros"))
+
+gini <- gini %>%
+  mutate(across(6:13, ~ na_if(as.character(.), "."))) %>%  # Replace "." with NA
+  mutate(across(6:13, as.numeric)) %>%                     # Convert all to numeric
+  mutate(across(where(is.numeric), ~ round(., 2)))         # Round only numeric columns
+
+gini_grouped <- gini %>%
+  group_by(municipality_code) %>%
+  summarise(across(starts_with("gini"), median, na.rm = F), .groups = 'drop',
+            municipality_name = first(municipality_name)) %>%
+  mutate(across(starts_with("gini"), ~ round(., 2))) # Round only numeric columns
+rm(gini)  
+
+gini_grouped <- gini_grouped %>% 
+  pivot_longer(cols = starts_with("gini"),
+               names_to = "year",
+               values_to = "gini") %>% 
+  mutate(year = str_extract(year, "\\d{4}")) %>% 
+  filter(!is.na(gini))
+
+gini_grouped <- gini_grouped %>% 
+  mutate(municipality_name = clean_municipality_name(municipality_name))
+
+manual_matches <- tibble::tibble(
+  word = c("vistabella del maestrat"),
+  new = c("vistabella del maestrazgo"))
+
+gini_grouped <- gini_grouped %>%
+  mutate(municipality_name = case_when(municipality_name %in% manual_matches$word ~ 
+                                         manual_matches$new[match(municipality_name, manual_matches$word)],
+                                       TRUE ~ municipality_name))  # Keep original if no match
+
+write_csv(gini_grouped, file = "income/INE/gini_cleaned.csv", na = "")
+
+##_____________________________________#
+## Evictions
+
+file_path <- "evictions/judicial_parties/Datos crisis 2015_2024.xlsx"
+sheet_names <- excel_sheets(file_path)
+
+# Load all sheets into a named list and clean column names
+eviction_data <- sheet_names %>%
+  set_names() %>%
+  map(~ read_xlsx(file_path, sheet = .x, skip = 4) %>%
+        clean_names())
+
+# Assign to separate variables
+mortgage_foreclosures_initiated <- eviction_data[["Ejecuciones hipotecarias"]]
+monitory_proceedings <- eviction_data[["Monitorios"]]
+evictions_judicial <- eviction_data[["Lanzamientos J1II"]]   # use II not ll
+evictions_common_service <- eviction_data[["Lanzamientos SCE"]]
+
+# Load judicial IDs
+judicial_ids <- read_xlsx("judicial_parties/judicial_codes.xlsx") %>%
+  select(judicial_id = pj_name, judicial_code1 = pj_code, judicial_code2 = pj_id, 
+         municipality_code, municipality_name) %>%
+  mutate(judicial_id = stri_trans_general(judicial_id, "Latin-ASCII"))
+
+# Function to clean a sheet
+clean_eviction_sheet <- function(sheet_data, value_prefix = "value") {
+  sheet_data <- clean_names(sheet_data)
+  
+  first_col <- names(sheet_data)[1]
+  
+  sheet_data %>%
+    select(1:11) %>%  # keep only first 11 columns: ID + 10 years
+    rename(judicial_id = !!first_col) %>%
+    rename_with(~ str_replace_all(., "x?(\\d{4})", paste0(value_prefix, "_\\1"))) %>%
+    mutate(judicial_id = stri_trans_general(judicial_id, "Latin-ASCII")) %>%
+    full_join(judicial_ids, by = "judicial_id") %>%
+    pivot_longer(cols = starts_with(value_prefix),
+                 names_to = "year",
+                 names_prefix = paste0(value_prefix, "_"),
+                 values_to = value_prefix) %>%
+    mutate(year = as.integer(year))
+}
+
+mortgage_foreclosures_clean <- clean_eviction_sheet(mortgage_foreclosures_initiated, "foreclosures")
+monitory_proceedings_clean <- clean_eviction_sheet(monitory_proceedings, "monitorios")
+evictions_judicial_clean <- clean_eviction_sheet(evictions_judicial, "evictions_j1ll")
+evictions_common_clean <- clean_eviction_sheet(evictions_common_service, "evictions_sce")
+
+mortgage_long <- mortgage_foreclosures_clean %>%
+  select(judicial_id, year, judicial_code1, judicial_code2, municipality_code, municipality_name, value = foreclosures) %>%
+  mutate(type = "foreclosure")
+
+monitorios_long <- monitory_proceedings_clean %>%
+  select(judicial_id, year, judicial_code1, judicial_code2, municipality_code, municipality_name, value = monitorios) %>%
+  mutate(type = "monitorio")
+
+j1ll_long <- evictions_judicial_clean %>%
+  select(judicial_id, year, judicial_code1, judicial_code2, municipality_code, municipality_name, value = evictions_j1ll) %>%
+  mutate(type = "eviction_j1ll")
+
+sce_long <- evictions_common_clean %>%
+  select(judicial_id, year, judicial_code1, judicial_code2, municipality_code, municipality_name, value = evictions_sce) %>%
+  mutate(type = "eviction_sce")
+
+evictions <- bind_rows(mortgage_long, monitorios_long, j1ll_long, sce_long) 
+
+evictions <- evictions %>% 
+  mutate(year = as.character(year)) %>% 
+  mutate(municipality_name = clean_municipality_name(municipality_name)) %>% 
+  filter(!is.na(value)) 
+
+manual_matches <- tibble::tibble(
+  word = c("oyon", "arratzua ubarrundia", "legutio", "zubia", "zoma", "zarza",
+           "zarza perrunal", "zarza de pumareda", "zaida", "yunta", "yesa", "yebenes"),
+  new = c("oyon oion", "arrazua ubarrundia", "legutiano", "zubia, la", "zoma, la", "zarza, la",
+          "zarza perrunal, la", "zarza de pumareda, la", "zaida, la", "yunta, la", "yesa, la", "yebenes, los"))
+
+# Mutate 'idealista' by replacing municipality_name based on the manual matches
+evictions <- evictions %>%
+  mutate(municipality_name = case_when(
+    municipality_name %in% manual_matches$word ~ 
+      manual_matches$new[match(municipality_name, manual_matches$word)],
+    TRUE ~ municipality_name))  # Keep original if no match
+
+evictions_wide <- evictions %>% 
+  pivot_wider(names_from = type,
+              values_from = value,
+              values_fill = 0) %>% 
+  mutate(year = as.character(year))
+
+evictions_wide <- evictions_wide %>% 
+  mutate(municipality_name = clean_municipality_name(municipality_name)) %>% 
+  # filter if both municipality_name and municipality_code are NAs
+  filter(!is.na(municipality_name) | !is.na(municipality_code)) 
+
+write_csv(evictions_wide, file = "evictions/evictions_cleaned.csv", na = "")
+rm(judicial_ids, mortgage_long, monitorios_long, j1ll_long, sce_long, eviction_data,
+   clean_eviction_sheet, file_path, sheet_names, mortgage_foreclosures_clean,
+   mortgage_foreclosures_initiated, monitory_proceedings_clean, monitory_proceedings,
+   evictions_judicial_clean, evictions_judicial, evictions_common_clean, 
+   evictions_common_service, manual_matches, evictions)
+
+##_____________________________________#
+## Mayors
+
+mayors <- read_csv("elections/mayors_councilors/mayors_cleaned.csv")
+
+mayors <- mayors %>% 
+  select(c(year=election_year, municipality_code, municipality_name, party_id, party_ideology, sexo, ocupacion, estudios)) %>% 
+  filter(!is.na(municipality_code) & municipality_code != "NA")
+
+# Check that municipality_code just has 5 numbers
+mayors <- mayors %>%
+  mutate(municipality_code = str_pad(as.character(municipality_code), width = 5, side = "left", pad = "0"),
+         municipality_code = str_sub(municipality_code, 1, 5))
+
+# Homogeneize municipality names
+mayors <- mayors %>%
+  mutate(municipality_name = str_to_lower(municipality_name),
+    municipality_name = str_squish(municipality_name),
+    municipality_name = str_replace_all(municipality_name, "[áàäâ]", "a"),
+    municipality_name = str_replace_all(municipality_name, "[éèëê]", "e"),
+    municipality_name = str_replace_all(municipality_name, "[íìïî]", "i"),
+    municipality_name = str_replace_all(municipality_name, "[óòöô]", "o"),
+    municipality_name = str_replace_all(municipality_name, "[úùüû]", "u"),
+    municipality_name = str_replace_all(municipality_name, "ñ", "n"),
+    municipality_name = str_split_fixed(municipality_name, "/", 2)[,1],  # keep only first if dual name
+    municipality_name = str_replace_all(municipality_name, "\\((el|la|los|las|l')\\)", ""),  # remove articles in ()
+    municipality_name = str_replace_all(municipality_name, ",\\s*(el|la|los|las|l')$", ""),   # remove articles after comma
+    municipality_name = str_replace_all(municipality_name, "-", " "),  # unify separator
+    municipality_name = str_squish(municipality_name),
+    municipality_name = str_trim(municipality_name))
+
+manual_matches <- tibble::tibble(
+  word = c("vistabella del maestrat"),
+  new = c("vistabella del maestrazgo"))
+
+# Mutate 'idealista' by replacing municipality_name based on the manual matches
+mayors <- mayors %>%
+  mutate(municipality_name = case_when(
+    municipality_name %in% manual_matches$word ~ 
+      manual_matches$new[match(municipality_name, manual_matches$word)],
+    TRUE ~ municipality_name))  # Keep original if no match
+rm(manual_matches)
+
+mayors$year <- as.character(mayors$year)  # Convert year to character
+
+mayors <- mayors %>%
+  distinct() 
+
+#if two observations from same municipality and year, keep only one (the one that is not 'OTHER')
+mayors <- mayors %>% 
+  distinct() %>%
+  group_by(municipality_code, municipality_name, year) %>%
+  mutate(keep_flag = case_when(
+      n() == 1 ~ TRUE,
+      n() == 2 & any(party_id == "OTHER") ~ party_id != "OTHER",  # keep non-OTHER
+      n() == 2 ~ row_number() == 1)) %>%   # if both are not OTHER, keep first
+  filter(keep_flag) %>%
+  select(-keep_flag) %>%
+  ungroup()
+
+# Find most common name per municipality_code
+name_lookup <- mayors %>%
+  count(municipality_code, municipality_name) %>%
+  group_by(municipality_code) %>%
+  slice_max(order_by = n, n = 1, with_ties = FALSE) %>%
+  select(municipality_code, standard_name = municipality_name)
+
+# Join back to replace names with standard
+mayors <- mayors %>%
+  left_join(name_lookup, by = "municipality_code") %>%
+  mutate(municipality_name = standard_name) %>%
+  select(-standard_name)
+
+mayors <- mayors %>%
+  mutate(party_id = ifelse(party_id == "CC/ATI", "CCa", party_id), 
+         party_id = ifelse(party_id == "CC", "CCa", party_id), 
+         party_ideology = ifelse(party_id == "CCa", 5, party_ideology),
+         party_id = ifelse(str_detect(party_id, "(?i)Gest|electoral|GM|N.ADS|OTROS"), "IND", party_id), 
+         party_id = ifelse(str_detect(party_id, "(?i)Ciu"), "CIU", party_id), 
+         party_id = ifelse(str_detect(party_id, "(?i)C´s|CS"), "C's", party_id), 
+         party_ideology = ifelse(party_id == "BNG", 2, party_ideology),
+         party_id = ifelse(party_id == "AHORA" & year == "2015", "AHORA DECIDE", party_id), 
+         party_ideology = ifelse(party_id == "AHORA DECIDE", 2, party_ideology),
+         party_id = ifelse(party_id == "BLOC" & year %in% c(2003, 1999, 2007, 2011), "BLOC NACIONALISTA VALENCIA-COMPROMIS", party_id), 
+         party_ideology = ifelse(party_id == "BLOC NACIONALISTA VALENCIA-COMPROMIS", 2, party_ideology),
+         party_ideology = ifelse(party_id == "CONTIGO" & is.na(party_ideology), 8, party_ideology),
+         party_ideology = ifelse(party_id == "CxG", 5, party_ideology),
+         party_id = ifelse(party_id == "FORO", "FAC", party_id), 
+         party_id = ifelse(party_id == "GUANYEM", "GANEMOS", party_id), 
+         party_ideology = ifelse(party_id == "FAC", 5, party_ideology),
+         party_id = ifelse(party_id == "PA.", "PA", party_id), 
+         party_ideology = ifelse(party_id == "PA", 3, party_ideology),
+         party_id = ifelse(party_id == "PR", "PR+", party_id), 
+         party_ideology = ifelse(party_id == "PR+", 3, party_ideology),
+         party_id = ifelse(party_id == "PRC", "PRCM", party_id), 
+         party_ideology = ifelse(party_id == "PRCM", 4, party_ideology),
+         party_id = ifelse(party_id == "PREX/CE", "eXtremeños", party_id), 
+         party_ideology = ifelse(party_id == "PRCM", 4, party_ideology),
+         party_id = ifelse(party_id == "UC-CDS", "CDS", party_id), 
+         party_ideology = ifelse(party_id == "CDS", 6, party_ideology),
+         party_ideology = ifelse(party_id == "UPN", 6, party_ideology),
+         party_ideology = ifelse(party_id == "UPCA", 5, party_ideology),
+         party_ideology = ifelse(party_id == "XAV", 6, party_ideology))
+         
+write.csv(mayors, "elections/mayors_councilors/mayors_cleaned_def.csv", row.names = FALSE, na = "")
+
+##_____________________________________#
+## Idealista
+
+idealista <- read.csv("idealista/idealista_cleaned.csv") %>% 
+  rename(municipality_name = MUNICIPALITY) %>%
+  clean_names() %>% 
+  filter(month == 3, # Only keep March (before elections)
+         zonelevelid == 7, # Keep municipality observations, not districts
+         adtypologyid == 255) %>% # Keep the aggregate of homes and chalets
+  select(-month, -zonelevelid, -adtypologyid) 
+
+idealista <- idealista %>% 
+  mutate(municipality_name = clean_municipality_name(municipality_name)) %>% 
+  pivot_wider(names_from = metric,
+              values_from = statisticvalue,
+              values_fn = mean,  # In case of duplicates, take the mean
+              values_fill = NA) %>% # Fill missing combinations with NA
+  clean_names()
+
+idealista <- idealista %>%
+  mutate(adoperationid = case_when(
+    adoperationid == 1 ~ "sale",
+    adoperationid == 2 ~ "rent",
+    TRUE ~ as.character(adoperationid))) %>%
+  pivot_wider(names_from = adoperationid,
+              values_from = c(unitprice_asking, stock_asking),
+              names_glue = "{.value}_{adoperationid}",
+              values_fn = mean, # In case of duplicates
+              values_fill = NA) %>%  
+  clean_names()
+
+idealista <- idealista %>%
+  rename(price_per_m2_sale = unitprice_asking_sale,
+         price_per_m2_rent = unitprice_asking_rent,
+         num_ads_sale = stock_asking_sale,
+         num_ads_rent = stock_asking_rent)
+
+election_panel <- election_panel %>%
+  mutate(municipality_name = clean_municipality_name(municipality_name),
+         municipality_code = str_pad(str_extract(municipality_code, "\\d+"), 5, pad = "0")) %>% 
+  mutate(municipality_code = as.character(municipality_code),
+         year = as.factor(year)) 
+
+manual_matches <- tibble::tibble(
+  word = c("lentegi", "guadamejud", "vilafames", "salzadella", "estellenchs", "benigembla", "alcoleja", 
+           "sabinan", "alonsotegi", "gizaburaga", "garai", "montserrat", "guadassuar", "rivarredonda", 
+           "sant sadurni d'osomort", "cuartango", "urcabustaiz", "benimasot", "crevillent", "gatika",
+           "arakaldo", "montaverner", "massalaves", "garciotum", "aldehuelas",
+           "bidaurreta", "vilalba", "bardaji", "legazpi", "gaintza", "banyalbufar",
+           "sotalbo", "cuatretondeta", "cripan", "oion", "penacerrada", "salinas de anana",
+           "valle de arana", "zuya", "iruna de oca", "alcolecha", "alfaz del pi", "alqueria de aznar",
+           "baneres", "benichembla", "crevillente", "gayanes", "muro del alcoy", "san juan de alicante",
+           "barraco", "santa cruz", "casas del puerto de villatoro", "contreras",
+           "constanzana", "biel fuencalderas", "herradon", "gilgarcia", "losar",
+           "zarza capilla", "helechosa de los montes", "retamal de llerena", "banalbufar",
+           "mao", "maria de la salud", "villafranca de bonany", "hostalets de balenya", "les cabanyes",
+           "montmany figaro", "ant feliu saserra", "cangas de narcea", "torregamones", "alberique",
+           "cillorigo", "las rozas", "san ildefonso o la granja", "huevar", "roda de bera", 
+           "arganda", "mieres del camino", "moncofar", "renteria", "puerto de sagunto", "sierra nevada", "villarreal"),
+  new = c("lenteji", "guadamajud", "villafames", "salsadella", "estellencs", "benichembla", "alcolecha", 
+          "savinan", "alsonsotegui", "guizaburaga", "garay", "monserrat", "guadasuar", "ribarredonda", 
+          "sant sadurni d'osormort", "kuartango", "urkabustaiz", "benimassot", "crevillente", "gatica",
+          "aracaldo", "montaberner", "masalaves", "garciotun", "aldehuela",
+          "vidaurreta", "villalba", "bardagi", "legazpia", "gainza", "banalbufar",
+          "sotalvo", "quatretondeta", "kripan", "oyon oion", "penacerrada urizaharra", "anana",
+          "harana", "zuia", "iruna oka", "alcoleja", "alfas del pi", "alqueria d'asnar",
+          "banyeres de mariola", "benigembla", "crevillent", "gaianes", "muro de alcoy", "sant joan d'alacant",
+          "barraco,el", "santa cruz de marchena", "casas del puerto", "collado de contreras",
+          "constantina", "biel", "herradon de pinares", "gil garcia", "losar del barco",
+          "capilla", "helechosa", "retamal", "banyalbufar",
+          "mahon", "maria de la salut", "vilafranca de bonany", "balenya", "cabanyes",
+          "figaro montmany", "sant feliu sasserra", "cangas del narcea", "gamones", "alberic",
+          "cillorigo de liebana", "las rozas de valdearroyo", "san ildefonso", "huevar del aljarafe", "roda de bara", 
+          "arganda del rey", "mieres", "moncofa", "errenteria", "sagunto", "monachil", "vila real"))
+
+# Mutate 'idealista' by replacing municipality_name based on the manual matches
+idealista <- idealista %>%
+  mutate(municipality_name = case_when(municipality_name %in% manual_matches$word ~ 
+                                         manual_matches$new[match(municipality_name, 
+                                                                  manual_matches$word)],
+                                       TRUE ~ municipality_name))  # Keep original if no match
+
+province_lookup <- c("Alicante" = "Alacant",
+                     "Álava" = "Araba",
+                     "Balears (Illes)" = "Illes Balears",
+                     "Castellón" = "Castelló",
+                     "Guipúzcoa" = "Gipuzkoa",                
+                     "València" = "Valencia",
+                     "Vizcaya" = "Bizkaia")
+
+idealista <- idealista %>%
+  mutate(province_name = recode(province, !!!province_lookup)) %>% 
+  select(-province)
+rm(province_lookup)
+
+idealista_grouped <- idealista %>% #from district to municopality data
+  group_by(municipality_name, year, province_name) %>%
+  summarise(across(c(price_per_m2_sale, price_per_m2_rent, num_ads_sale, num_ads_rent), 
+                   median, na.rm = TRUE), .groups = 'drop') 
+
+# Correct unmatched municipality_names
+islantilla_rows <- idealista_grouped %>%
+  filter(municipality_name == "islantilla")
+
+manga_rows <- idealista_grouped %>%
+  filter(municipality_name == "manga del mar menor")
+
+# Create two copies with updated municipality names
+islantilla_isla_cristina <- islantilla_rows %>%
+  mutate(municipality_name = "isla cristina")
+
+islantilla_lepe <- islantilla_rows %>%
+  mutate(municipality_name = "lepe")
+
+manga_cartagena <- manga_rows %>%
+  mutate(municipality_name = "cartagena")
+
+manga_sanroque <- manga_rows %>%
+  mutate(municipality_name = "san roque")
+
+# Combine the modified rows with the rest of the dataset
+idealista_grouped <- idealista_grouped %>%
+  filter(municipality_name != "islantilla") %>%
+  bind_rows(islantilla_isla_cristina, islantilla_lepe)
+rm(islantilla_rows, islantilla_isla_cristina, islantilla_lepe)
+
+idealista_grouped <- idealista_grouped %>%
+  filter(municipality_name != "manga del mar menor") %>%
+  bind_rows(manga_cartagena, manga_sanroque)
+rm(manga_rows, manga_cartagena, manga_sanroque)
+
+# Update 'gran alacant' to 'santa pola' so they can be grouped together
+idealista_grouped <- idealista_grouped %>%
+  mutate(municipality_name = ifelse(municipality_name == "gran alacant", 
+                                    "santa pola", municipality_name),
+         municipality_name = ifelse(municipality_name == "cala de villajoyosa",
+                                    "villajoyosa", municipality_name),
+         municipality_name = ifelse(municipality_name == "montequinto",
+                                    "dos hermanas", municipality_name),
+         municipality_name = ifelse(municipality_name == "moraira",
+                                    "teulada", municipality_name),
+         municipality_name = ifelse(municipality_name == "sotogrande",
+                                    "san roque", municipality_name),
+         municipality_name = ifelse(municipality_name == "zahara de los atunes",
+                                    "barbate", municipality_name),
+         municipality_name = ifelse(municipality_name == "torre del mar",
+                                    "velez malaga", municipality_name))
+
+idealista_grouped <- idealista_grouped %>%
+  group_by(municipality_name, year, province_name) %>%
+  summarise(price_per_m2_sale = median(price_per_m2_sale, na.rm = TRUE),
+            price_per_m2_rent = median(price_per_m2_rent, na.rm = TRUE),
+            num_ads_sale = sum(num_ads_sale, na.rm = TRUE),
+            num_ads_rent = sum(num_ads_rent, na.rm = TRUE),
+            .groups = "drop")
+write_csv(idealista, "idealista/idealista_cleaned_v2.csv")
+write_csv(idealista_grouped, "idealista/idealista_cleaned_grouped.csv")
+write_csv(election_panel, file = "elections/Final databases/election_panel_cleaned.csv")
+rm(manual_matches, idealista)
+  
+##_____________________________________#
+## Merging Previous Datasets
+
+unique_dataset <- full_join(income_municipal, migration_age_wide, 
+                            by = c("municipality_code", "municipality_name", "year"))
+
+unique_dataset <- unique_dataset %>%
+  group_by(municipality_code, year) %>%
+  summarise(across(everything(), ~ coalesce(.[1], .[2])), .groups = "drop")
+
+
+# revisar renters_owners_long amb owned_raw
+unique_dataset <- full_join(unique_dataset, renters_owners_long, 
+                            by = c("municipality_code", "municipality_name", "year"))
+
+unique_dataset <- unique_dataset %>% 
+  group_by(municipality_code) %>%
+  fill(municipality_name, .direction = "downup") %>% 
+  ungroup()
+
+unique_dataset <- full_join(unique_dataset, unemployment, 
+                             by = c("municipality_code", "municipality_name", "year")) %>% 
+  distinct()
+
+unique_dataset <- unique_dataset %>% 
+  group_by(municipality_code, municipality_name) %>%
+  fill(province_name, .direction = "downup") %>% 
+  ungroup()
+
+merged_dataset <- unique_dataset %>%
+  group_by(municipality_name, year) %>%
+  summarise(across(everything(), ~ coalesce(.[1], .[2])), .groups = "drop")
+
+unique_dataset <- merged_dataset %>%
+  filter(!is.na(municipality_code))
+rm(merged_dataset)
+
+unique_dataset <- left_join(unique_dataset, gini_grouped[,-2], 
+                            by = c("municipality_code", "year")) %>% 
+  mutate(year = as_factor(year)) 
+
+unique_dataset <- unique_dataset %>% 
+  group_by(municipality_code) %>%
+  fill(municipality_name, .direction = "downup") %>% 
+  fill(province_name, .direction = "downup") %>% 
+  ungroup()
+
+unique_dataset <- full_join(election_panel, unique_dataset[, c(-1,-17)], 
+                            by = c("municipality_code", "year"))
+
+unique_dataset <- unique_dataset %>%  
+  group_by(municipality_code) %>%
+  fill(municipality_name, .direction = "downup") %>% 
+  fill(province_name, .direction = "downup") %>% 
+  ungroup()
+
+clean_names <- function(x) {
+  x %>%
+    tolower() %>%
+    gsub("-", " ", .) %>%
+    trimws()
+}
+
+# Clean both datasets
+unique_dataset <- unique_dataset %>%
+  mutate(municipality_name = clean_names(municipality_name))
+mayors <- mayors %>%
+  mutate(municipality_name = clean_names(municipality_name))
+unique_dataset <- left_join(unique_dataset, mayors,
+                  by = c("municipality_code", "municipality_name", "year"))
+
+unique_dataset <- left_join(unique_dataset[-5], evictions_wide, 
+                  by = c("municipality_code", "municipality_name", "year"))
+
+unique_dataset <- unique_dataset %>% 
+  group_by(municipality_code, municipality_name) %>%
+  #rename(province_name = province_name.x) %>%
+  fill(province_name, .direction = "downup") %>% 
+  ungroup()
+
+rm(income_municipal, migration_age_wide, renters_owners_long, unemployment, election_ideology,
+   gini_grouped, election_panel, mayors, name_lookup, evictions_wide)
+
+##_______________________________#
+# Further cleaning changes
+
+unique_dataset <- unique_dataset %>% 
+  mutate(year = as.numeric(as.character(year)))
+
+# Divide number of evictions/population of the judicial party
+judicial_population <- read_xlsx("judicial_parties/judicial_population.xlsx")
+judicial_population <- judicial_population %>% select(c(pj_name, pj_population))
+
+unique_dataset <- unique_dataset %>% 
+  left_join(judicial_population, by = c("judicial_id" = "pj_name")) 
+
+unique_dataset <- unique_dataset %>% 
+  group_by(municipality_code, municipality_name, province_name) %>%
+  fill(judicial_id, .direction = "downup") %>% 
+  fill(pj_population, .direction = "downup") %>% 
+  ungroup()
+
+unique_dataset <- unique_dataset %>% 
+  mutate(across(c(foreclosure, monitorio, eviction_j1ll, eviction_sce), 
+                ~ . / pj_population * 100))
+
+# unemployment_abs: divide by working age population to compute share, using share_aged_16_64
+unique_dataset <- unique_dataset %>% 
+  mutate(unemployment_share = unemployment_abs / ((share_aged_16_64 / 100) * population) * 100) %>% 
+  select(-unemployment_abs)
+
+# remove 2 outliers (not NAs)
+unique_dataset <- unique_dataset %>%
+  filter(unemployment_share <= 100 | is.na(unemployment_share))
+save(unique_dataset, file = "elections/Junk databases/unique_dataset.RData")
+
+election_idealista <- full_join(unique_dataset, idealista_grouped, 
+                         by = c("municipality_name", "year", "province_name")) %>%
+  mutate(match_status = case_when(municipality_name %in% idealista_grouped$municipality_name & 
+                                    municipality_name %in% unique_dataset$municipality_name ~ "Matched",
+                                  municipality_name %in% idealista_grouped$municipality_name ~ "Unmatched in election_panel",
+                                  TRUE ~ "Unmatched in idealista")) %>% 
+  mutate(match_status = as.factor(match_status)) 
+
+election_idealista <- election_idealista %>% 
+  group_by(municipality_name) %>%
+  fill(municipality_code, .direction = "downup") %>% 
+  fill(province_name, .direction = "downup") %>% 
+  ungroup() %>% 
+  select(-match_status)
+
+# Reorder variables
+election_idealista <- election_idealista %>% 
+  rename(party_mayor = party_id) %>% 
+  mutate(province_name = ifelse(municipality_name == "alboraia", "Valencia", province_name),
+         province_name = ifelse(municipality_name == "almassora", "Castelló", province_name),
+         province_name = ifelse(municipality_name == "alqueria de la comtessa, l'", "Valencia", province_name),
+         province_name = ifelse(municipality_name == "alqueries, les", "Castelló", province_name),
+         province_name = ifelse(municipality_name == "ametlla del valles, l'", "Barcelona", province_name),
+         province_name = ifelse(municipality_name == "astillero, el", "Cantabria", province_name),
+         province_name = ifelse(municipality_name == "barrios, los", "Cádiz", province_name),
+         province_name = ifelse(municipality_name == "borriana", "Castelló", province_name),
+         province_name = ifelse(municipality_name == "burgo de ebro, el", "Zaragoza", province_name),
+         province_name = ifelse(municipality_name == "cabanyes, les", "Barcelona", province_name),
+         province_name = ifelse(municipality_name == "calonge i sant antoni", "Teruel", province_name),
+         province_name = ifelse(municipality_name == "calp", "Alacant", province_name),
+         province_name = ifelse(municipality_name == "campello, el", "Alacant", province_name),
+         province_name = ifelse(municipality_name == "canonja, la", "Tarragona", province_name),
+         province_name = ifelse(municipality_name == "castello de la plana", "Castelló", province_name),
+         province_name = ifelse(municipality_name == "catllar, el", "Tarragona", province_name),
+         province_name = ifelse(municipality_name == "cendea de olza", "Pamplona", province_name),
+         province_name = ifelse(municipality_name == "coruna, a", "A Coruña", province_name),
+         province_name = ifelse(municipality_name == "donostia", "Gipuzkoa", province_name),
+         province_name = ifelse(municipality_name == "franqueses del valles, les", "Barcelona", province_name),
+         province_name = ifelse(municipality_name == "gabias, las", "Granada", province_name),
+         province_name = ifelse(municipality_name == "garriga, la", "Barcelona", province_name),
+         province_name = ifelse(municipality_name == "garrovilla, la", "Badajoz", province_name),
+         province_name = ifelse(municipality_name == "granada, la", "Barcelona", province_name),
+         province_name = ifelse(municipality_name == "guadiana", "Badajoz", province_name),
+         province_name = ifelse(municipality_name == "guardia de jaen, la", "Jaén", province_name),
+         province_name = ifelse(municipality_name == "hospitalet de llobregat, l'", "Barcelona", province_name),
+         province_name = ifelse(municipality_name == "lastrilla, la", "Segovia", province_name),
+         province_name = ifelse(municipality_name == "linea de la concepcion, la", "Cádiz", province_name),
+         province_name = ifelse(municipality_name == "llocnou de la corona", "Valencia", province_name),
+         province_name = ifelse(municipality_name == "nucia, la", "Alacant", province_name),
+         province_name = ifelse(municipality_name == "palacios y villafranca, los", "Sevilla", province_name),
+         province_name = ifelse(municipality_name == "pallaresos, els", "Tarragona", province_name),
+         province_name = ifelse(municipality_name == "palma de cervello, la", "Barcelona", province_name),
+         province_name = ifelse(municipality_name == "palmas de gran canaria, las", "Las Palmas", province_name),
+         province_name = ifelse(municipality_name == "papiol, el", "Barcelona", province_name),
+         province_name = ifelse(municipality_name == "pereiro de aguiar, o", "Ourense", province_name),
+         province_name = ifelse(municipality_name == "pobla de farnals, la", "Valencia", province_name),
+         province_name = ifelse(municipality_name == "pobla de mafumet, la", "Tarragona", province_name),
+         province_name = ifelse(municipality_name == "poblets, els", "Alacant", province_name),
+         province_name = ifelse(municipality_name == "porrino, o", "Vigo", province_name),
+         province_name = ifelse(municipality_name == "prat de llobregat, el", "Barcelona", province_name),
+         province_name = ifelse(municipality_name == "puebla de alfinden, la", "Zaragoza", province_name),
+         province_name = ifelse(municipality_name == "puerto de santa maria, el", "Cádiz", province_name),
+         province_name = ifelse(municipality_name == "puerto real", "Cádiz", province_name),
+         province_name = ifelse(municipality_name == "puig de santa maria, el", "Valencia", province_name),
+         province_name = ifelse(municipality_name == "rafelbunyol", "Valencia", province_name),
+         province_name = ifelse(municipality_name == "real de gandia, el", "Valencia", province_name),
+         province_name = ifelse(municipality_name == "real sitio de san ildefonso", "Segovia", province_name),
+         province_name = ifelse(municipality_name == "regueras, las", "Asturias", province_name),
+         province_name = ifelse(municipality_name == "rinconada, la", "Sevilla", province_name),
+         province_name = ifelse(municipality_name == "roca del valles, la", "Barcelona", province_name),
+         province_name = ifelse(municipality_name == "rosario, el", "Santa Cruz de Tenerife", province_name),
+         province_name = ifelse(municipality_name == "rozas de madrid, las", "Madrid", province_name),
+         province_name = ifelse(municipality_name == "santa eularia des riu", "Illes Balears", province_name),
+         province_name = ifelse(municipality_name == "selva del camp, la", "Tarragona", province_name),
+         province_name = ifelse(municipality_name == "sopela", "Bizkaia", province_name),
+         province_name = ifelse(municipality_name == "torres de cotillas, las", "Murcia", province_name),
+         province_name = ifelse(municipality_name == "union, la", "Murcia", province_name),
+         province_name = ifelse(municipality_name == "valle de egues", "Pamplona", province_name),
+         province_name = ifelse(municipality_name == "villa de otura", "Granada", province_name),
+         province_name = ifelse(municipality_name == "villares, los", "Jaén", province_name),
+         province_name = ifelse(municipality_name == "viso del alcor, el", "Sevilla", province_name),
+         province_name = ifelse(municipality_name == "zubia, la", "Granada", province_name),
+         province_name = ifelse(municipality_name == "bigues i riells", "Barcelona", province_name),
+         province_name = ifelse(municipality_name == "llagosta, la", "Barcelona", province_name),
+         province_name = ifelse(municipality_name == "pla del penedes, el", "Barcelona", province_name),
+         province_name = ifelse(municipality_name == "alamo, el", "Madrid", province_name),
+         province_name = ifelse(municipality_name == "alfas del pi, l'", "Alacant", province_name),
+         province_name = ifelse(municipality_name == "algaba, la", "Sevilla", province_name),
+         province_name = ifelse(municipality_name == "palma", "Illes Balears", province_name),
+         province_name = ifelse(municipality_name == "puebla del rio, la", "Sevilla", province_name),
+         province_name = ifelse(municipality_name == "puebla del rio, la", "Barcelona", province_name))
+
+##_______________________________#
+# Incorporate urban areas data
+
+urban_raw <- read_csv("urban_areas/urban_areas_cleaned.csv",
+                      col_names = FALSE,
+                      locale = locale(decimal_mark = ",", grouping_mark = "."),
+                      col_types = cols(X1 = col_character(),   # AreaUrbana
+                                       X2 = col_character(),   # Municipio
+                                       X3 = col_number(),      # Superficie_km2
+                                       X4 = col_number(),      # Poblacion
+                                       X5 = col_number(),      # Densidad
+                                       X6 = col_number(),      # Porcentaje
+                                       X7 = col_character())    # Tipo
+                      ) |>
+  setNames(c("area_urbana","municipio","superficie_km2",
+      "poblacion","densidad","porcentaje","tipo")) |>
+  mutate(tipo = as.factor(tipo)) |>
+  filter(!is.na(superficie_km2) & !is.na(poblacion) & !is.na(densidad) & !is.na(porcentaje)) 
+
+clean_municipality_name <- function(name) {
+  name %>%
+    stri_trans_general("Latin-ASCII") %>%  # Remove accents
+    str_to_lower() %>%                     # Convert to lowercase
+    str_extract("^[^/]+") %>%              # Extract text before the first slash
+    str_replace_all("-", " ") %>%          # Replace hyphens with spaces
+    str_replace_all("\\(.*\\)", "") %>%    # Remove text inside parentheses
+    str_replace_all("^l'\\s*", "") %>%     # Remove "l'" at the start
+    str_replace_all("^el\\s+|^la\\s+|^les\\s+|^las\\s+|^els\\s+|^los\\s+", "") %>%  # Remove leading articles
+    str_replace_all("\\((el|la|los|las|els|les|l')\\)", "") %>%  # Remove articles in ()
+    str_replace_all(",\\s*(el|la|los|las|els|les|l'|o|a)$", "") %>%   # Remove articles after comma
+    str_squish() %>%                    # Remove extra spaces
+    str_trim()                          # Final trim
+}
+
+urban_areas <- urban_raw %>% 
+  mutate(municipality_name = clean_municipality_name(municipio)) %>% 
+  select(-municipio)
+
+urban_areas <- urban_areas %>% 
+  mutate(municipality_name = ifelse(municipality_name == "alboraia", "alboraya", municipality_name),
+         municipality_name = ifelse(municipality_name == "palma", "palma de mallorca", municipality_name),
+         municipality_name = ifelse(municipality_name == "estrada", "a estrada", municipality_name),
+         municipality_name = ifelse(municipality_name == "mao mahon", "mayon", municipality_name),
+         municipality_name = ifelse(municipality_name == "cabanyes, les", "cabanyes", municipality_name),
+         municipality_name = ifelse(municipality_name == "borriana", "burriana", municipality_name),
+         municipality_name = ifelse(municipality_name == "porrino", "o porrino", municipality_name),
+         municipality_name = ifelse(municipality_name == "real sitio de san ildefonso", "san ildefonso", municipality_name),
+         municipality_name = ifelse(municipality_name == "calp", "calpe", municipality_name),
+         municipality_name = ifelse(municipality_name == "llocnou de la corona", "lugar nuevo de la corona", municipality_name),
+         municipality_name = ifelse(municipality_name == "torrenueva costa", "torrenueva", municipality_name),
+         municipality_name = ifelse(municipality_name == "santa eulalia", "santa eulalia del rio", municipality_name),
+         municipality_name = ifelse(municipality_name == "rafelbunyol", "rafelbunol", municipality_name),
+         municipality_name = ifelse(municipality_name == "santa eularia des riu", "santa eulalia del rio", municipality_name),
+         municipality_name = ifelse(municipality_name == "donostia", "donostia san sebastian", municipality_name),
+         municipality_name = ifelse(municipality_name == "coruna", "a coruna", municipality_name),
+         municipality_name = ifelse(municipality_name == "castello de la plana", "castellon de la plana", municipality_name),
+         municipality_name = ifelse(municipality_name == "calonge i sant antoni", "calonge", municipality_name))
+
+election_idealista <- election_idealista %>% 
+  mutate(municipality_name = clean_municipality_name(municipality_name))
+
+election_idealista <- full_join(election_idealista, urban_areas, by = "municipality_name") %>% 
+  filter(municipality_name != "3") %>% 
+  group_by(municipality_name) %>%
+  fill(province_name, .direction = "downup") %>% 
+  fill(municipality_code, .direction = "downup") %>% 
+  ungroup() %>% 
+  mutate(area_urbana = as.factor(area_urbana)) %>% 
+  filter(!str_detect(municipality_name, "^\\d+$"))
+rm(urban_raw)
+
+election_idealista <- election_idealista %>% 
+  select(-c(no_votes_3.5, no_votes_4.5, share_votes_3.5, share_votes_4.5)) 
+            #share_votes_4.5_delta_rel, share_votes_3.5_delta_rel,
+            #share_votes_3.5_delta_abs, share_votes_4.5_delta_abs)) 
+
+# cleaning party_mayor categories
+election_idealista <- election_idealista %>% 
+  mutate(party_mayor = str_replace_all(party_mayor, "^[^a-zA-Z]+", ""),
+         party_mayor = str_replace_all(party_mayor, "\\s+", "_"),
+         party_mayor = str_replace_all(party_mayor, "\\W+", ""),
+         party_mayor = str_to_upper(party_mayor)) %>% 
+  mutate(party_mayor = ifelse(str_detect(party_mayor, "(?i)gest"), "CGEST", party_mayor),
+         party_mayor = ifelse(str_detect(party_mayor, "(?i)bildu"), "BILDU", party_mayor),
+         party_mayor = ifelse(str_detect(party_mayor, "(?i)guanyem"), "GANEMOS", party_mayor),
+         party_mayor = ifelse(str_detect(party_mayor, "(?i)NADS|OTROS"), "OTHER", party_mayor))
+rm(idealista_grouped, unique_dataset, clean_municipality_name, urban_areas, judicial_population)
+
+election_idealista <- election_idealista %>%
+  group_by(municipality_code, year) %>%
+  summarise(across(everything(), ~ coalesce(.[1], .[2])), .groups = "drop")
+
+election_idealista <- election_idealista %>%
+  select(-contains("delta"))
+
+election_idealista <- election_idealista %>%
+  filter(municipality_name != "puig de santa maria")
+
+summary(election_idealista)
+
+xxx
+
+# Impute population and income data for non-election or missing years
+safe_approx <- function(y, x) {
+  if (!is.numeric(y)) return(y)            # skip characters/factors
+  if (sum(!is.na(y)) < 2) return(y)        # not enough points
+  zoo::na.approx(y, x = x, na.rm = FALSE, rule = 2)
+}
+
+vars_interp <- c("population", "avg_gross_inc_hh", "gini",
+  "share_aged_under_16", "share_aged_16_64", "share_aged_over_65",
+  "share_foreigner", "share_spanish", "unemployment_share",
+  "judicial_id", "judicial_code1", "judicial_code2",
+  "foreclosure", "monitorio", "eviction_j1ll", "eviction_sce",
+  "pj_population", "price_per_m2_sale", "price_per_m2_rent", "num_ads_sale", "num_ads_rent",
+  "superficie_km2", "poblacion", "densidad", "porcentaje", "area_urbana")
+
+election_idealista <- election_idealista %>%
+  group_by(municipality_code) %>%
+  arrange(year, .by_group = TRUE) %>%
+  mutate(across(all_of(vars_interp), ~ safe_approx(.x, year))) %>%
+  ungroup()
+
+colSums(is.na(election_idealista)) #NAs by variable
+
+write_csv(election_idealista, file = "Final_datasets/unified_dataset_14_5.csv", na = "")
+#db <- read_csv("Final_datasets/unified_dataset_14_5.csv")
+
+##_____________________________________#
+# Preparing dataset for v2seats in STATA
+
+# Long format and unique id for each observation
+seats_dataset <- election_idealista %>% 
+  pivot_longer(cols = c(7:19), 
+               names_to = "ideology", 
+               values_to = "no_votes") %>%
+  mutate(ideology = str_to_lower(ideology),
+         ideology = str_replace_all(ideology, "\\D+", ""),  # Extract only the number
+         ideology = paste0("ideology_", ideology))
+
+write_csv(seats_dataset, file = "Final_datasets/seats_dataset_14_5.csv", na = "")
+
+##_____________________________________#
+# Georgraphy of municipalities
+
+#library(mapSpain)
+#
+#geography <- mapSpain::esp_munic.sf %>% 
+#  clean_names() %>% 
+#  select(c(municipality_code = lau_code, 
+#         municipality_name = name, 
+#         geometry))
+
+
