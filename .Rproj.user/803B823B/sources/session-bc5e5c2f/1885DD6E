@@ -3,7 +3,7 @@
     "path": "D:/OneDrive/Web/celia_estruch_website/_quarto.yml",
     "project_path": "_quarto.yml",
     "type": "yaml",
-    "hash": "2306671755",
+    "hash": "2777727468",
     "contents": "",
     "dirty": false,
     "created": 1752664266450.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "0,0",
+        "cursorPosition": "9,25",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1752750275,
+    "lastKnownWriteTime": 1752761552,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1752750275962,
+    "last_content_update": 1752761552071,
     "read_only": false,
     "read_only_alternatives": []
 }
