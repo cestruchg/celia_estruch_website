@@ -1,6 +1,0 @@
-[1,"==> quarto preview index.qmd --to html --no-watch-inputs --no-browse\n\n"]
-[1,"pandoc \n  to: html\n  output-file: index.html\n  standalone: true\n  title-prefix: Cèlia Estruch-Garcia\n  section-divs: true\n  html-math-method: mathjax\n  wrap: none\n  default-image-extension: png\n  toc: false\n  css:\n    - styles.css\n  \nmetadata\n  document-css: false\n  link-citations: true\n  date-format: long\n  lang: en\n  description-meta: Academic Website Cèlia Estruch-Garcia\n  author-meta: Cèlia Estruch-Garcia\n  title: Cèlia Estruch-Garcia\n  image: profile_photo_lse_cut.png\n  page-navigation: false\n  page-layout: full\n  \n"]
-[1,"Output created: docs\\index.html\n\nPreparing to preview\n"]
-[1,"\n"]
-[1,"Watching files for changes\nBrowse at http://localhost:5927/\n"]
-[1,"GET: /\n"]
