@@ -20,3 +20,6 @@ website:
     left: "[Cèlia Estruch-Garcia](http://www.github.com) &copy; <script>document.write(new Date().getFullYear())</script>" 
     center: "Build on [Quart Academic Website Template](https://github.com/drganghe/quarto-academic-website-template) adapted by [Dr. Gang He](http://drganghe.github.io)"
 
+format:
+  html:
+    include-in-header: canonical.html
