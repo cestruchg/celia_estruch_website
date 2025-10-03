@@ -22,7 +22,7 @@ format:
 <p><strong>Cèlia Estruch Garcia</strong><br>
 PhD Researcher, Department of Government<br>
 <a href="https://www.lse.ac.uk/government/" target="_blank">London School of Economics</a>
-cestruch@alumni.lse.ac.uk</p>
+C.Estruch-Garcia@lse.ac.uk</p>
 
 <div style="display: flex; gap: 24px; margin-top: 1rem;">
   <a href="https://github.com/cestruchg" target="_blank">
@@ -50,7 +50,7 @@ cestruch@alumni.lse.ac.uk</p>
 <!-- RIGHT COLUMN -->
 <div style="flex: 1.5; min-width: 400px; text-align: justify;">
 
-Welcome! I am an incoming Doctoral Researcher at the Department of Government at the <a href="https://www.lse.ac.uk/government/" target="_blank">London School of Economics and Political Science (LSE)</a>. My research focuses on the distributive and political impacts of sustainable urban policies.
+Welcome! I am an MRes/Doctoral Researcher at the Department of Government at the <a href="https://www.lse.ac.uk/government/" target="_blank">London School of Economics and Political Science (LSE)</a>. My research focuses on the distributive and political impacts of sustainable urban policies.
 
 Before starting my PhD, I worked as a Research Assistant at <a href="https://ieb.ub.edu/en/" target="_blank">Barcelona's Institute of Economics (IEB)</a> and the <a href="https://www.uoc.edu/en" target="_blank">Open University of Catalonia (UOC)</a>.
 
@@ -68,8 +68,11 @@ _with [Albert Solé-Ollé](https://albertsoleolle.wordpress.com/), [Filippo Tass
 - Media: [VoxTalks Economics](https://cepr.org/multimedia/do-car-bans-hurt-politicians)
 
 
+#### Under Review 
+
 **Do climate events drive support for climate change policies?**  
 _with [Toni Rodon](https://tonirodon.cat/), [Marc Guinjoan](https://sites.google.com/site/engmarcguinjoan?authuser=0), and [Roger Sanjaume](https://rogersanjaume.cat/)._ [Abstract](https://www.ub.edu/portal/web/dp-cpdcfd/novetats/-/detall/-do-climate-events-drive-support-for-climate-change-policies-toni-rodon-upf-marc-guinjoan-uab-)
+
 
 #### Work in Progress
 

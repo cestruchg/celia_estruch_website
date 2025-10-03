@@ -14,7 +14,7 @@ website:
       - text: Home
         file: index.qmd
       - text: CV
-        file: Estruch_cv_2025_07.pdf
+        file: Estruch_cv_2025_10.pdf
 
   page-footer: 
     left: "[Cèlia Estruch-Garcia](http://www.github.com) &copy; <script>document.write(new Date().getFullYear())</script>" 
