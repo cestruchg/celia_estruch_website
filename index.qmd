@@ -2,6 +2,7 @@
 title: "Cèlia Estruch-Garcia"
 description-meta: "Academic Website Cèlia Estruch-Garcia"
 image: "profile_photo_lse_cut.png"
+logo: "logo.png"
 page-navigation: false
 toc: false
 page-layout: full
@@ -50,7 +51,7 @@ C.Estruch-Garcia@lse.ac.uk</p>
 <!-- RIGHT COLUMN -->
 <div style="flex: 1.5; min-width: 400px; text-align: justify;">
 
-Welcome! I am an MRes/Doctoral Researcher at the Department of Government at the <a href="https://www.lse.ac.uk/government/" target="_blank">London School of Economics and Political Science (LSE)</a>. My research focuses on the distributive and political impacts of sustainable urban policies.
+Welcome! I am an MRes/Doctoral Researcher at the Department of Government at the <a href="https://www.lse.ac.uk/government/" target="_blank">London School of Economics and Political Science (LSE)</a>. I am affiliated with the [LSE Data Science Institute](https://www.lse.ac.uk/dsi) and the [Grantham Research Institute on Climate Change and the Environment](https://www.lse.ac.uk/granthaminstitute/). My research focuses on the distributive and political impacts of sustainable urban policies.
 
 Before starting my PhD, I worked as a Research Assistant at <a href="https://ieb.ub.edu/en/" target="_blank">Barcelona's Institute of Economics (IEB)</a> and the <a href="https://www.uoc.edu/en" target="_blank">Open University of Catalonia (UOC)</a>.
 
@@ -63,8 +64,8 @@ I hold a <a href="https://www.lse.ac.uk/study-at-lse/graduate/msc-political-scie
 #### Submitted for Publication
 
 **The electoral effects of banning cars from the streets: Evidence from Barcelona’s Superblocks**  
-_with [Albert Solé-Ollé](https://albertsoleolle.wordpress.com/), [Filippo Tassinari](https://sites.google.com/view/filippotassinari/home-page), and [Elisabet Viladecans-Marsal](https://elisabetviladecansmarsal.com/)._  [CEPR DP19915](https://hub.cepr.org/civicrm/file?id=227076&eid=235822&fcs=1c09bbc55709d2bc0317dcd9e2fe39cc78bcf000513f08d26acbc6d17cd37b2d_1745310367_168)  
-- Awards: Best Paper Award at the [11th Environmental Politics and Governance Conference](https://www.epg2025.org/).  
+_with [Albert Solé-Ollé](https://albertsoleolle.wordpress.com/), [Filippo Tassinari](https://sites.google.com/view/filippotassinari/home-page), and [Elisabet Viladecans-Marsal](https://elisabetviladecansmarsal.com/)._  [CEPR DP19915](https://cepr.org/publications/dp19925)  
+- Awards: Best Paper Award at the [11th Environmental Politics and Governance Conference](https://epgnetwork.org/epg-prize/).  
 - Media: [VoxTalks Economics](https://cepr.org/multimedia/do-car-bans-hurt-politicians)
 
 
