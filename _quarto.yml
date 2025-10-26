@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - CNAME
 
 description-meta: "Cèlia Estruch-Garcia's Academic Website"
 author-meta: "Cèlia Estruch-Garcia"
