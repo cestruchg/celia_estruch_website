@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -30,14 +30,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-991b1886d3c685c7aa2b62b80640c7af.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-1d4f84655f446305ac42a8f1abcf7405.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -67,6 +68,8 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Cèlia Estruch-Garcia</span>
     </a>
@@ -126,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
 <strong>Cèlia Estruch Garcia</strong><br> PhD Researcher, Department of Government<br> <a href="https://www.lse.ac.uk/government/" target="_blank">London School of Economics</a> C.Estruch-Garcia@lse.ac.uk
 </p>
 <div style="display: flex; gap: 24px; margin-top: 1rem;">
-<p><a href="https://github.com/cestruchg" target="_blank"> <img src="icons/icon_github.png" alt="GitHub" style="height: 24px; margin-right: 4px"> </a> <a href="https://linkedin.com/in/celia-estruch/" target="_blank"> <img src="icons/icon_linkedin.png" alt="LinkedIn" style="height: 33px; margin-right: 2px"> </a> <a href="https://scholar.google.com/citations?user=tertKG4AAAAJ&amp;hl=ca" target="_blank"> <img src="icons/icon_scholar.png" alt="Scholar" style="height: 24px; margin-right: 8px"> </a> <a href="https://bsky.app/profile/celiaestruch.bsky.social" target="_blank"> <img src="icons/icon_bluesky.png" alt="Bluesky" style="height: 24px; margin-right: 8px"> </a> <a href="https://x.com/celiaestruch" target="_blank"> <img src="icons/icon_x.png" alt="X" style="height: 24px;"> </a></p>
+<p><a href="https://github.com/cestruchg" target="_blank"> <img src="icons/icon_github.png" alt="GitHub" style="height: 24px; margin-right: 4px"> </a> <a href="https://orcid.org/0009-0001-0343-2031" target="_blank"> <img src="icons/icon_orcid.png" alt="ORCID" style="height: 25px; margin-right: 4px"> </a> <a href="https://scholar.google.com/citations?user=tertKG4AAAAJ&amp;hl=ca" target="_blank"> <img src="icons/icon_scholar.png" alt="Scholar" style="height: 24px; margin-right: 8px"> </a> <a href="https://bsky.app/profile/celiaestruch.bsky.social" target="_blank"> <img src="icons/icon_bluesky.png" alt="Bluesky" style="height: 24px; margin-right: 8px"> </a> <a href="https://x.com/celiaestruch" target="_blank"> <img src="icons/icon_x.png" alt="X" style="height: 24px;"> </a></p>
 </div>
 </div>
 <!-- RIGHT COLUMN -->
@@ -137,6 +140,11 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 <section id="research" class="level3">
 <h3 class="anchored" data-anchor-id="research">Research</h3>
+<section id="published-work" class="level4">
+<h4 class="anchored" data-anchor-id="published-work">Published Work</h4>
+<p><strong>The Limits of Alarm: How Climate Scenarios Fail to Increase Willingness to Act and Pay for Climate Change Policies</strong><br>
+<em>with <a href="https://tonirodon.cat/">Toni Rodon</a>, and <a href="https://sites.google.com/site/engmarcguinjoan?authuser=0">Marc Guinjoan</a>. Political Studies Review.</em> <a href="https://journals-sagepub-com.lse.idm.oclc.org/doi/10.1177/14789299251399359">Publisher’s version</a>.</p>
+</section>
 <section id="under-review" class="level4">
 <h4 class="anchored" data-anchor-id="under-review">Under Review</h4>
 <p><strong>The electoral effects of banning cars from the streets: Evidence from Barcelona’s Superblocks</strong><br>
@@ -209,13 +217,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
