@@ -7,7 +7,6 @@ body {
   line-height: 1.6;
 }
 
-
 a {
   color: #0077cc;
   text-decoration: none;
@@ -42,15 +41,40 @@ a img:hover {
   transition: 0.2s ease;
 }
 
+/* Media query per mòbils */
 @media (max-width: 768px) {
   body {
     padding: 1rem;
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   h2, h3 {
     font-size: 1.2rem;
   }
+  
+  /* Força les columnes a apilar-se verticalment */
+  div[style*="display: flex"] {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+  
+  /* Elimina el min-width i ajusta l'ample */
+  div[style*="min-width: 400px"] {
+    min-width: 100% !important;
+    flex: 1 !important;
+  }
+  
+  /* Ajusta la columna esquerra */
+  div[style*="flex: 0 0 280px"] {
+    flex: 1 !important;
+    margin-right: 0 !important;
+    text-align: center;
+  }
+  
+  /* Assegura que les imatges no es surtin */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 }
-
 

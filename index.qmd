@@ -29,8 +29,8 @@ C.Estruch-Garcia@lse.ac.uk</p>
   <a href="https://github.com/cestruchg" target="_blank">
     <img src="icons/icon_github.png" alt="GitHub" style="height: 24px; margin-right: 4px">
   </a>
-  <a href="https://linkedin.com/in/celia-estruch/" target="_blank">
-    <img src="icons/icon_linkedin.png" alt="LinkedIn" style="height: 33px; margin-right: 2px">
+  <a href="https://orcid.org/0009-0001-0343-2031" target="_blank">
+    <img src="icons/icon_orcid.png" alt="ORCID" style="height: 25px; margin-right: 4px">
   </a>
   <a href="https://scholar.google.com/citations?user=tertKG4AAAAJ&hl=ca" target="_blank">
     <img src="icons/icon_scholar.png" alt="Scholar" style="height: 24px; margin-right: 8px">
@@ -61,21 +61,26 @@ I hold a <a href="https://www.lse.ac.uk/study-at-lse/graduate/msc-political-scie
 
 ### Research
 
-#### Submitted for Publication
+#### Published Work
+
+**The Limits of Alarm: How Climate Scenarios Fail to Increase Willingness to Act and Pay for Climate Change Policies**  
+_with [Toni Rodon](https://tonirodon.cat/), and [Marc Guinjoan](https://sites.google.com/site/engmarcguinjoan?authuser=0). Political Studies Review._ [Publisher's version](https://journals-sagepub-com.lse.idm.oclc.org/doi/10.1177/14789299251399359).
+
+
+#### Under Review
 
 **The electoral effects of banning cars from the streets: Evidence from Barcelona’s Superblocks**  
-_with [Albert Solé-Ollé](https://albertsoleolle.wordpress.com/), [Filippo Tassinari](https://sites.google.com/view/filippotassinari/home-page), and [Elisabet Viladecans-Marsal](https://elisabetviladecansmarsal.com/)._  [CEPR DP19915](https://cepr.org/publications/dp19925)  
+_with [Albert Solé-Ollé](https://albertsoleolle.wordpress.com/), [Filippo Tassinari](https://sites.google.com/view/filippotassinari/home-page), and [Elisabet Viladecans-Marsal](https://elisabetviladecansmarsal.com/)._  [CEPR DP19915](https://cepr.org/publications/dp19925).  
 - Awards: Best Paper Award at the [11th Environmental Politics and Governance Conference](https://epgnetwork.org/epg-prize/).  
-- Media: [VoxTalks Economics](https://cepr.org/multimedia/do-car-bans-hurt-politicians)
+- Media: [VoxTalks Economics](https://cepr.org/multimedia/do-car-bans-hurt-politicians), 
+[Weekendavisen](https://www.weekendavisen.dk/ideer/baenke-eller-biler).
 
-
-#### Under Review 
-
-**Do climate events drive support for climate change policies?**  
-_with [Toni Rodon](https://tonirodon.cat/), [Marc Guinjoan](https://sites.google.com/site/engmarcguinjoan?authuser=0), and [Roger Sanjaume](https://rogersanjaume.cat/)._ [Abstract](https://www.ub.edu/portal/web/dp-cpdcfd/novetats/-/detall/-do-climate-events-drive-support-for-climate-change-policies-toni-rodon-upf-marc-guinjoan-uab-)
 
 
 #### Work in Progress
+
+**Do climate events drive support for climate change policies?**  
+_with [Toni Rodon](https://tonirodon.cat/), [Marc Guinjoan](https://sites.google.com/site/engmarcguinjoan?authuser=0), and [Roger Sanjaume](https://rogersanjaume.cat/)._ [Abstract](https://www.ub.edu/portal/web/dp-cpdcfd/novetats/-/detall/-do-climate-events-drive-support-for-climate-change-policies-toni-rodon-upf-marc-guinjoan-uab-).
 
 **Taking out the Trash: Political implications of door-to-door waste management in Catalonia**  
 _with [Max Bradley](https://www.eui.eu/people?id=max-bradley) and [Pau Grau-Vilalta](https://paugrau.cat/)._
