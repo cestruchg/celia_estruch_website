@@ -9,6 +9,9 @@ page-layout: full
 format:
   html:
     css: styles.css
+    include-in-header:
+      text: |
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ---
 
 <div style="display: flex; align-items: flex-start; justify-content: center; gap: 3rem; flex-wrap: wrap;">
