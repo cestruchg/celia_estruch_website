@@ -65,19 +65,49 @@ I hold a <a href="https://www.lse.ac.uk/study-at-lse/graduate/msc-political-scie
 #### Published Work
 
 **The Limits of Alarm: How Climate Scenarios Fail to Increase Willingness to Act and Pay for Climate Change Policies**  
-_with [Toni Rodon](https://tonirodon.cat/), and [Marc Guinjoan](https://sites.google.com/site/engmarcguinjoan?authuser=0). Political Studies Review._ [Publisher's version](https://journals-sagepub-com.lse.idm.oclc.org/doi/10.1177/14789299251399359).
+_with [Toni Rodon](https://tonirodon.cat/), and [Marc Guinjoan](https://sites.google.com/site/engmarcguinjoan?authuser=0). Political Studies Review._ [Publisher's version](https://journals-sagepub-com.lse.idm.oclc.org/doi/10.1177/14789299251399359)
+<br>
 
 
-#### Under Review
+#### Working papers
 
 **The electoral effects of banning cars from the streets: Evidence from Barcelona’s Superblocks**  
-_with [Albert Solé-Ollé](https://albertsoleolle.wordpress.com/), [Filippo Tassinari](https://sites.google.com/view/filippotassinari/home-page), and [Elisabet Viladecans-Marsal](https://elisabetviladecansmarsal.com/)._  [CEPR DP19915](https://cepr.org/publications/dp19925).  
-- Awards: Best Paper Award at the [11th Environmental Politics and Governance Conference](https://epgnetwork.org/epg-prize/).  
+_with [Albert Solé-Ollé](https://albertsoleolle.wordpress.com/), [Filippo Tassinari](https://sites.google.com/view/filippotassinari/home-page), and [Elisabet Viladecans-Marsal](https://elisabetviladecansmarsal.com/)._  
+_**R&R, American Journal of Political Science**_
+
+- [CEPR DP19915](https://cepr.org/publications/dp19925)
+
+- Awards: Best Paper Award at the [11th Environmental Politics and Governance Conference](https://epgnetwork.org/epg-prize/)  
+
 - Media: [VoxTalks Economics](https://cepr.org/multimedia/do-car-bans-hurt-politicians), 
-[Weekendavisen](https://www.weekendavisen.dk/ideer/baenke-eller-biler).
+[Weekendavisen](https://www.weekendavisen.dk/ideer/baenke-eller-biler)
+<br>
 
 **Do climate events drive support for climate change policies?**  
-_with [Toni Rodon](https://tonirodon.cat/), [Marc Guinjoan](https://sites.google.com/site/engmarcguinjoan?authuser=0), and [Roger Sanjaume](https://rogersanjaume.cat/)._ [Abstract](https://www.ub.edu/portal/web/dp-cpdcfd/novetats/-/detall/-do-climate-events-drive-support-for-climate-change-policies-toni-rodon-upf-marc-guinjoan-uab-).
+_with [Toni Rodon](https://tonirodon.cat/), [Marc Guinjoan](https://sites.google.com/site/engmarcguinjoan?authuser=0), and [Roger Sanjaume](https://rogersanjaume.cat/)._ Under Review.
+[Abstract](https://www.ub.edu/portal/web/dp-cpdcfd/novetats/-/detall/-do-climate-events-drive-support-for-climate-change-policies-toni-rodon-upf-marc-guinjoan-uab-)
+<br>
+
+
+#### In progress
+
+**Do climate events drive support for climate change policies?**  
+_with [Max Bradley](https://paugrau.cat/), and [Pau Grau-Vilalta](https://paugrau.cat/)._ Draft available upon request.
+<br>
+
+**Low Emission Zones and Electoral Accountability in Spain**
+<br>
+
+
+---
+
+### Pedagogical Resources
+
+_[MY474/MY557 Applied Machine Learning for Social Science Notes](https://www.lse.ac.uk/resources/calendar2025-2026/courseGuides/MY/2025_MY474.htm)_
+(LSE, Master's Level, 2025/2026)
+
+- Resources Developed: [Exam Preparation Notes](my547_ML_exam_notes_celiaestruchgarcia.pdf): Theory and code-checking notes covering the full course: bias-variance tradeoff, logistic regression, regularisation, model evaluation, active learning, and more.
+
 
 </div>
 </div>
