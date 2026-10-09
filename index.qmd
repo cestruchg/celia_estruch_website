@@ -52,7 +52,7 @@ C.Estruch-Garcia@lse.ac.uk</p>
 <!-- RIGHT COLUMN -->
 <div style="flex: 1.5; min-width: 400px; text-align: justify;">
 
-Welcome! I am an MRes/Doctoral Researcher at the Department of Government at the <a href="https://www.lse.ac.uk/government/" target="_blank">London School of Economics and Political Science (LSE)</a>. I am affiliated with the [LSE Data Science Institute](https://www.lse.ac.uk/dsi) and the [Grantham Research Institute on Climate Change and the Environment](https://www.lse.ac.uk/granthaminstitute/). My research focuses on the distributive and political impacts of sustainable urban policies.
+Welcome! I am a PhD candidate at the Department of Government at the <a href="https://www.lse.ac.uk/government/" target="_blank">London School of Economics and Political Science (LSE)</a>. I am affiliated with the [LSE Data Science Institute](https://www.lse.ac.uk/dsi) and the [Grantham Research Institute on Climate Change and the Environment](https://www.lse.ac.uk/granthaminstitute/). My research focuses on the distributive and political impacts of sustainable urban policies.
 
 Before starting my PhD, I worked as a Research Assistant at <a href="https://ieb.ub.edu/en/" target="_blank">Barcelona's Institute of Economics (IEB)</a> and the <a href="https://www.uoc.edu/en" target="_blank">Open University of Catalonia (UOC)</a>.
 
@@ -64,27 +64,27 @@ I hold a <a href="https://www.lse.ac.uk/study-at-lse/graduate/msc-political-scie
 
 #### Published Work
 
-**The Limits of Alarm: How Climate Scenarios Fail to Increase Willingness to Act and Pay for Climate Change Policies**  
-_with [Toni Rodon](https://tonirodon.cat/), and [Marc Guinjoan](https://sites.google.com/site/engmarcguinjoan?authuser=0). Political Studies Review._ [Publisher's version](https://journals-sagepub-com.lse.idm.oclc.org/doi/10.1177/14789299251399359)
+**The electoral effects of banning cars from the streets: Evidence from Barcelona’s Superblocks**
+_with [Albert Solé-Ollé](https://albertsoleolle.wordpress.com/), [Filippo Tassinari](https://sites.google.com/view/filippotassinari/home-page), and [Elisabet Viladecans-Marsal](https://elisabetviladecansmarsal.com/)._
+_**Conditionally accepted, American Journal of Political Science**_
+
+- [CEPR DP19915](https://cepr.org/publications/dp19925)
+
+- Awards: Best Paper Award at the [11th Environmental Politics and Governance Conference](https://epgnetwork.org/epg-prize/)
+
+- Media: [VoxTalks Economics](https://cepr.org/multimedia/do-car-bans-hurt-politicians),
+[Weekendavisen](https://www.weekendavisen.dk/ideer/baenke-eller-biler)
+<br>
+
+**The Limits of Alarm: How Climate Scenarios Fail to Increase Willingness to Act and Pay for Climate Change Policies**
+_with [Toni Rodon](https://tonirodon.cat/), and [Marc Guinjoan](https://sites.google.com/site/engmarcguinjoan?authuser=0). Political Studies Review, 24(2), 325–334._ [Publisher's version](https://journals-sagepub-com.lse.idm.oclc.org/doi/10.1177/14789299251399359)
 <br>
 
 
 #### Working papers
 
-**The electoral effects of banning cars from the streets: Evidence from Barcelona’s Superblocks**  
-_with [Albert Solé-Ollé](https://albertsoleolle.wordpress.com/), [Filippo Tassinari](https://sites.google.com/view/filippotassinari/home-page), and [Elisabet Viladecans-Marsal](https://elisabetviladecansmarsal.com/)._  
-_**R&R, American Journal of Political Science**_
-
-- [CEPR DP19915](https://cepr.org/publications/dp19925)
-
-- Awards: Best Paper Award at the [11th Environmental Politics and Governance Conference](https://epgnetwork.org/epg-prize/)  
-
-- Media: [VoxTalks Economics](https://cepr.org/multimedia/do-car-bans-hurt-politicians), 
-[Weekendavisen](https://www.weekendavisen.dk/ideer/baenke-eller-biler)
-<br>
-
-**Do climate events drive support for climate change policies?**  
-_with [Toni Rodon](https://tonirodon.cat/), [Marc Guinjoan](https://sites.google.com/site/engmarcguinjoan?authuser=0), and [Roger Sanjaume](https://rogersanjaume.cat/)._ Under Review.
+**Do climate events drive support for climate change policies?**
+_with [Toni Rodon](https://tonirodon.cat/), [Marc Guinjoan](https://sites.google.com/site/engmarcguinjoan?authuser=0), and [Roger Sanjaume](https://rogersanjaume.cat/)._
 [Abstract](https://www.ub.edu/portal/web/dp-cpdcfd/novetats/-/detall/-do-climate-events-drive-support-for-climate-change-policies-toni-rodon-upf-marc-guinjoan-uab-)
 <br>
 
