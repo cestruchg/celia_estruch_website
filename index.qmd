@@ -54,7 +54,7 @@ C.Estruch-Garcia@lse.ac.uk</p>
 
 Welcome! I am a PhD candidate at the Department of Government at the <a href="https://www.lse.ac.uk/government/" target="_blank">London School of Economics and Political Science (LSE)</a>. I am affiliated with the [LSE Data Science Institute](https://www.lse.ac.uk/dsi) and the [Grantham Research Institute on Climate Change and the Environment](https://www.lse.ac.uk/granthaminstitute/). My research focuses on the distributive and political impacts of sustainable urban policies.
 
-Before starting my PhD, I worked as a Research Assistant at <a href="https://ieb.ub.edu/en/" target="_blank">Barcelona's Institute of Economics (IEB)</a> and the <a href="https://www.uoc.edu/en" target="_blank">Open University of Catalonia (UOC)</a>.
+Before starting my PhD, I worked as a Research Assistant at <a href="https://ieb.ub.edu/en/" target="_blank">Barcelona's Institute of Economics (IEB)</a> and the <a href="https://www.uoc.edu/en" target="_blank">Open University of Catalonia - Pompeu Fabra University</a>.
 
 I hold a <a href="https://www.lse.ac.uk/study-at-lse/graduate/msc-political-science-political-science-and-political-economy" target="_blank">Master's degree in Political Science and Political Economy</a> from LSE, a <a href="https://www.upf.edu/en/web/graus/grau-filosofia-politica-economia" target="_blank">Bachelor's in Philosophy, Politics and Economics</a> from Pompeu Fabra University, and training in <a href="https://web.ub.edu/en/web/estudis/w/specificmasterdegree-202311953" target="_blank">Data Analysis for Social Sciences</a> from the University of Barcelona.
 
@@ -89,7 +89,7 @@ _with [Toni Rodon](https://tonirodon.cat/), [Marc Guinjoan](https://sites.google
 
 #### In progress
 
-**Do climate events drive support for climate change policies?**  
+**Taking out the Trash: Political implications of door-to-door waste management in Catalonia**
 _with [Max Bradley](https://paugrau.cat/), and [Pau Grau-Vilalta](https://paugrau.cat/)._ Draft available upon request.
 <br>
 
@@ -100,6 +100,9 @@ _with [Max Bradley](https://paugrau.cat/), and [Pau Grau-Vilalta](https://paugra
 ---
 
 ### Pedagogical Resources
+
+**Teaching Assistant**, _Introductory R for Political Science_, London School of Economics (09/2026 – present)
+<br>
 
 _[MY474/MY557 Applied Machine Learning for Social Science Notes](https://www.lse.ac.uk/resources/calendar2025-2026/courseGuides/MY/2025_MY474.htm)_
 (LSE, Master's Level, 2025/2026)
